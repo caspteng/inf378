@@ -25,6 +25,7 @@ composer install
 
 Database Migrations (config the .env file before)
 ```shell
+php artisan db:create
 php artisan migrate
 ```
 
