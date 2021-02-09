@@ -11,7 +11,9 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js')
-    .postCss('resources/css/app.css', 'public/css', [
-        //
-    ]);
+mix.js('resources/js/app.js', 'public/js').postCss('resources/css/app.css', 'public/css', [
+    require('postcss-import'),
+    require('autoprefixer'),
+])
+    .copy('node_modules/semantic-ui-css/semantic.min.css','public/css/semantic.min.css')
+    .copy('node_modules/semantic-ui-css/semantic.min.js','public/js/semantic.min.js');
