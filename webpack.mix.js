@@ -19,5 +19,10 @@ mix.js('resources/js/app.js', 'public/js')
         require('postcss-import'),
         require('autoprefixer'),
     ])
-    .copy('node_modules/semantic-ui-css/semantic.min.css', 'public/css/semantic.min.css')
-    .copy('node_modules/semantic-ui-css/semantic.min.js', 'public/js/semantic.min.js');
+
+    /* Adding Semantic UI assets */
+    .copy('node_modules/fomantic-ui/dist/semantic.min.css', 'public/assets/semantic/semantic.min.css')
+    .copy('node_modules/fomantic-ui/dist/semantic.min.js', 'public/assets/semantic/semantic.min.js')
+    .copy('node_modules/fomantic-ui/dist/themes/', 'public/assets/semantic/themes/');
+
+//mix.sass('resources/sass/app.scss', 'public/css');
