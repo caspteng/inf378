@@ -21,9 +21,10 @@
         "resolve-url-loader": "^3.1.2",
         "sass": "^1.32.6",
         "sass-loader": "^8.0.2",
-        "fomantic-ui": "^2.8.7"
+        "fomantic-ui": "^2.8.7",
+        "jquery": "^3.5.1"
     },
     "dependencies": {
-        "jquery": "^3.5.1"
+
     }
 }

@@ -2,6 +2,8 @@
 
 namespace App\Http\Requests\Auth;
 
+use App\Http\Controllers\Auth\SecurityController;
+use App\Models\User;
 use Illuminate\Auth\Events\Lockout;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
@@ -44,15 +46,19 @@ class LoginRequest extends FormRequest
     public function authenticate()
     {
         $this->ensureIsNotRateLimited();
+        $user = User::where([
+            'email' => $this->email,
+            'password' => SecurityController::myHash($this->password)
+        ])->first();
 
-        if (! Auth::attempt($this->only('email', 'password'), $this->filled('remember'))) {
+        if (! $user) {
             RateLimiter::hit($this->throttleKey());
 
             throw ValidationException::withMessages([
                 'email' => __('auth.failed'),
             ]);
         }
-
+        Auth::login($user);
         RateLimiter::clear($this->throttleKey());
     }
 
