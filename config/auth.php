@@ -123,6 +123,7 @@ return [
     |
     */
 
+    'encrypt_method' => 'ripemd160',
     'encrypt_key' => 'vive la tweet_academy',
 
 

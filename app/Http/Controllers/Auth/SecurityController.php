@@ -8,6 +8,6 @@ class SecurityController extends Controller
 {
     public static function myHash($password)
     {
-        return hash_hmac('ripemd160', $password, config('auth.encrypt_key'));
+        return hash_hmac(config('auth.encrypt_method'), $password, config('auth.encrypt_key'));
     }
 }
