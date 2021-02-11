@@ -9,23 +9,18 @@ class TweetController extends Controller
 {
     public function getAllTweet()
     {
-        $tweets = Tweet::orderBy('created_at')->get();
-        return view('tweet.all', [
-            'tweets' => $tweets,
-        ]);
+        $getTweet = Tweet::orderBy('created_at')->get();
+        return view('tweet.all')
+            ->with('allTweets', $getTweet);
     }
 
     public function getAllUserTweetByUsername($name)
     {
+        $user = User::where('username', $name)->firstOrFail();
 
-        $user = User::where('username', $name)->first();
-        if (is_null($user)) {
-            abort(404);
-        }
-        $tweets = Tweet::where('user_id', $user->id)->get();
+        $getUserTweet = Tweet::where('user_id', $user->id)->get();
 
-        return view('tweet.user', [
-            'tweets' => $tweets,
-        ]);
+        return view('tweet.user')
+            ->with('userTweets', $getUserTweet);
     }
 }
