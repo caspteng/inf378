@@ -26,4 +26,4 @@ require __DIR__.'/auth.php';
 
 Route::get('/tweet', [TweetController::class, 'getAllTweet']);
 
-Route::get('/tweet/{name}', [TweetController::class, 'getSingleTweet']);
+Route::get('/tweet/{name}', [TweetController::class, 'getAllUserTweetByUsername']);
