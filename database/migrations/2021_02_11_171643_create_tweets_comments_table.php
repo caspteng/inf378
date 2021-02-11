@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTweetsTable extends Migration
+class CreateTweetsCommentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,11 @@ class CreateTweetsTable extends Migration
      */
     public function up()
     {
-        Schema::create('tweets', function (Blueprint $table) {
+        Schema::create('tweets_comments', function (Blueprint $table) {
             $table->id();
-            $table->string('message',140);
-            $table->unsignedBigInteger('user_id');
-            $table->boolean('is_retweet')->default(false);
-            $table->unsignedBigInteger('user_id_retweet')->nullable();
-            $table->unsignedBigInteger('retweet_id')->nullable();
+            $table->bigInteger('tweet_id')->unsigned();
+            $table->bigInteger('user_id')->unsigned();
+            $table->string('message', 140);
             $table->boolean('is_deleted')->default(false);
             $table->timestamps();
         });
@@ -32,6 +30,6 @@ class CreateTweetsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tweets');
+        Schema::dropIfExists('tweets_comments');
     }
 }
