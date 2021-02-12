@@ -2,7 +2,7 @@
 @section('content')
 
 
-    <h1 class="ui header">Tweet de </h1>
+<h1 class="ui header center aligned">Tweets de {{$user->username}} </h1>
     @foreach($userTweets as $userTweet)
 
 
@@ -18,7 +18,7 @@
 
                     {{ $userTweet->message }}
 
-                    <div class="right aligned"> {{ $userTweet->user['username'] }} </div>
+                    <div class="right aligned"> {{ TweetUser::getUsername($userTweet->user_id) }} </div>
 
 
                 </td>

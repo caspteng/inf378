@@ -24,7 +24,8 @@ class TweetController extends Controller
         $getUserTweet = Tweet::where('user_id', $user->id)->get();
 
         return view('tweet.user')
-            ->with('userTweets', $getUserTweet);
+            ->with('userTweets', $getUserTweet)
+            ->with('user', $user);
     }
 
     public function tweetForm()
