@@ -7,9 +7,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-/**
- * @method static where(string $string, $name)
- */
 
 class User extends Authenticatable
 {

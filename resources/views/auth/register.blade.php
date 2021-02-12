@@ -11,8 +11,8 @@
     <form method="POST" action="{{ route('register') }}" class="ui form attached fluid segment">
         @csrf
             <div class="field">
-                <label for="username">Nom</label>
-                <input id="username" type="text" name="username" placeholder="Prénom Nom" required>
+                <label for="surname">Nom</label>
+                <input id="surname" type="text" name="surname" placeholder="Prénom Nom" required>
             </div>
             <div class="field">
                 <label for="email">Email</label>
