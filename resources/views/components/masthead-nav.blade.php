@@ -8,10 +8,10 @@
         @guest
         <div class="right menu">
             <div class="item">
-                <a class="ui button">Log in</a>
+                <a href="{{ route('login') }}" class="ui button">Log in</a>
             </div>
             <div class="item">
-                <a class="ui primary button">Sign Up</a>
+                <a href="{{ route('register') }}" class="ui primary button">Sign Up</a>
             </div>
         </div>
         @endguest

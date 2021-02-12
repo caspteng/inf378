@@ -19,9 +19,6 @@ Route::get('/', function () {
     return view('home');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';
 
@@ -36,4 +33,7 @@ Route::get('/tweet/{name}', [TweetController::class, 'getAllUserTweetByUsername'
 
 
 ### PROFIL PAGE ###
+Route::get('/profile', function() {
+    return redirect('/' . auth()->user()->username);
+})->middleware(['auth'])->name('profile');
 Route::get('/{username}', [ProfileController::class, 'show']);

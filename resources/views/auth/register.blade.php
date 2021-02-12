@@ -46,7 +46,7 @@
     </form>
     <div class="ui bottom attached warning message">
         <i class="icon help"></i>
-        Already signed up? <a href="#">Login here</a> instead.
+        Déjà inscrit ? <a href="{{ route('login') }}">Connecte-toi</a> à la place.
     </div>
     <script>
         $('.ui.form')

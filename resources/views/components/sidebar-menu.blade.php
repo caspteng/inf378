@@ -5,7 +5,7 @@
     <a class="item">Company</a>
     <a class="item">Careers</a>
     @guest
-    <a class="item">Login</a>
-    <a class="item">Signup</a>
+    <a href="{{ route('login') }}" class="item">Login</a>
+    <a href="{{ route('register') }}" class="item">Signup</a>
     @endguest
 </div>
