@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TweetController;
 use Illuminate\Support\Facades\Route;
 
@@ -24,6 +25,11 @@ Route::get('/dashboard', function () {
 
 require __DIR__.'/auth.php';
 
-Route::get('/tweet', [TweetController::class, 'getAllTweet']);
 
+### TWEET ###
+
+Route::get('/tweet', [TweetController::class, 'getAllTweet']);
 Route::get('/tweet/{name}', [TweetController::class, 'getAllUserTweetByUsername']);
+
+### PROFIL PAGE ###
+Route::get('/{username}', [ProfileController::class, 'show']);

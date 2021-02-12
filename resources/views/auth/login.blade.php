@@ -1,6 +1,5 @@
 @extends('layouts.auth')
 @section('content')
-    <h1>{{ $errors }}</h1>
     <form method="POST" action="{{ route('login') }}" class="ui form">
         @csrf
         <div class="ui placeholder segment">
@@ -22,6 +21,14 @@
                             </div>
                         </div>
                         <button class="ui blue submit button" type="submit">Login</button>
+                        <div class="ui error message"></div>
+                        @if ($errors->has('login'))
+                        <div class="ui negative message">
+                            <ul class="list">
+                                <li>{{ $errors->first()  }}</li>
+                            </ul>
+                        </div>
+                        @endif
                     </div>
                 </div>
                 <div class="middle aligned column">
@@ -36,5 +43,31 @@
             </div>
         </div>
     </form>
-
+<script>
+    $('.form')
+        .form({
+            on: 'blur',
+            fields: {
+                login: {
+                    identifier: 'login',
+                    rules: [
+                        {
+                            type: 'empty',
+                            prompt: 'Merci d\'indiquer votre nom d\'utilisateur ou email'
+                        }
+                    ]
+                },
+                password: {
+                    identifier: 'password',
+                    rules: [
+                        {
+                            type: 'empty',
+                            prompt: 'Le champ mot de passe est requis'
+                        }
+                    ]
+                },
+            }
+        })
+    ;
+</script>
 @stop
