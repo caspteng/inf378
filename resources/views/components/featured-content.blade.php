@@ -11,10 +11,10 @@
             <a class="item">Careers</a>
             <div class="right item">
                 @auth
-                    <a href="{{ url('/dashboard') }}" class="ui inverted button">Dashboard</a>
+                    <a href="{{ route('profile') }}" class="ui inverted button">Profil</a>
                 @else
-                <a class="ui inverted button">Log in</a>
-                <a class="ui inverted button">Sign Up</a>
+                <a href="{{ route('login') }}" class="ui inverted button">Log in</a>
+                <a href="{{ route('register') }}" class="ui inverted button">Sign Up</a>
                 @endauth
             </div>
         </div>
