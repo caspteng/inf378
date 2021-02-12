@@ -31,7 +31,7 @@ class LoginRequest extends FormRequest
     public function rules()
     {
         return [
-            'email' => 'required|string|email',
+            'login' => 'required|string',
             'password' => 'required|string',
         ];
     }
@@ -46,8 +46,9 @@ class LoginRequest extends FormRequest
     public function authenticate()
     {
         $this->ensureIsNotRateLimited();
+        $field = filter_var($this->login, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
         $user = User::where([
-            'email' => $this->email,
+            $field => $this->login,
             'password' => SecurityController::myHash($this->password)
         ])->first();
 

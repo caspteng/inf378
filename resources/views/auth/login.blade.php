@@ -8,16 +8,16 @@
                 <div class="column">
                     <div class="ui form">
                         <div class="field">
-                            <label for="email">Email</label>
+                            <label for="login">Nom d'utilisateur ou email</label>
                             <div class="ui left icon input">
-                                <input id="email" type="email" placeholder="votre@email.com">
+                                <input id="login" name="login" type="text" placeholder="Nom d'utilisateur ou email">
                                 <i class="user icon"></i>
                             </div>
                         </div>
                         <div class="field">
                             <label for="password">Mot de passe</label>
                             <div class="ui left icon input">
-                                <input id="password" type="password" placeholder="Mot de passe">
+                                <input id="password" name="password" type="password" placeholder="Mot de passe">
                                 <i class="lock icon"></i>
                             </div>
                         </div>
