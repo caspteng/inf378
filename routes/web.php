@@ -29,7 +29,11 @@ require __DIR__.'/auth.php';
 ### TWEET ###
 
 Route::get('/tweet', [TweetController::class, 'getAllTweet']);
+Route::get('/tweet/tweetform', [TweetController::class, 'tweetForm'])
+->name('tweetForm');
+Route::post('/tweet/tweetform', [TweetController::class, 'postTweet']);
 Route::get('/tweet/{name}', [TweetController::class, 'getAllUserTweetByUsername']);
+
 
 ### PROFIL PAGE ###
 Route::get('/{username}', [ProfileController::class, 'show']);
