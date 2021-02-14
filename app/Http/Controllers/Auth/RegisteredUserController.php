@@ -9,6 +9,7 @@ use Faker\Provider\Person;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class RegisteredUserController extends Controller
 {
@@ -52,10 +53,21 @@ class RegisteredUserController extends Controller
         return redirect(RouteServiceProvider::HOME);
     }
 
+    /**
+     *
+     * Generate a unique username
+     *
+     * @param $username
+     * @return string
+     */
     public static function generateUsername($username): string
     {
         $filterUsername = preg_replace("/[^a-zA-Z0-9]+/", "", $username);
-
-        return trim(strtolower($filterUsername)) . Person::randomNumber(3);
+        $newusername = trim(strtolower($filterUsername));
+        if (User::where('username', '=', $newusername)->first()) {
+            $newusername .= Person::randomNumber(1);
+            return self::generateUsername($newusername);
+        }
+        return $newusername;
     }
 }

@@ -6,7 +6,7 @@ use App\Models\Tweet;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Client\RequestException;
-use Illuminate\Support\Facades\DB;
+
 
 class TweetController extends Controller
 {
@@ -28,24 +28,22 @@ class TweetController extends Controller
             ->with('user', $user);
     }
 
-    public function tweetForm()
+    public function showTweetForm()
     {
-
         return view('tweet.tweetform');
     }
 
-    public function postTweet(Request $request)
+    public function store(Request $request)
     {
         $request->validate([
             'message' => 'required|string|max:160|min:10'
 
         ]);
+        Tweet::create([
+            'message' => $request->message,
+            'user_id' => auth()->user()->id,
+        ]);
 
-        $tweet = new Tweet;
-        $tweet->message = $request->message;
-        $tweet->user_id = auth()->user()->id;
-        $tweet->save();
-
-        return redirect(route('tweetForm'));
+        return redirect(route('showTweetForm'));
     }
 }

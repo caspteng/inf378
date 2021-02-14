@@ -48,4 +48,16 @@ class User extends Authenticatable
     public function tweet() {
         return $this->hasMany(Tweet::class);
     }
+
+    public function following()
+    {
+        return $this->belongsToMany(User::class, 'follows',
+            'user_as_follow', 'user_followed')
+            ->withTimestamps();
+    }
+
+    public function isFollowing(User $user)
+    {
+        return !is_null($this->following()->where('user_followed', $user->id)->first());
+    }
 }

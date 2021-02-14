@@ -23,4 +23,11 @@ class User
         $user = DB::table('users')->where('id', $user_id)->first();
         return '@' . $user->username ?? '';
     }
+
+    public static function getFollowCount(int $user_id): int
+    {
+        return DB::table('follows')->where('user_followed', $user_id)->count();
+    }
+
+
 }

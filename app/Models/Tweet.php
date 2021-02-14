@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @method static orderBy(string $string)
@@ -11,6 +12,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Tweet extends Model
 {
+    use SoftDeletes;
     use HasFactory;
 
     /**
@@ -19,6 +21,16 @@ class Tweet extends Model
      * @var string
      */
     protected $table = 'tweets';
+
+    protected $fillable = [
+        'message',
+        'user_id',
+        'is_retweet',
+        'user_id_retweet',
+        'retweet_id'
+    ];
+
+    protected $dates = ['deleted_at'];
 
     public function user() {
         return $this->belongsTo(User::class)->withDefault();

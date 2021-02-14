@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta id="token" name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name') }}</title>
 
@@ -14,8 +14,13 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('assets/semantic/semantic.min.js') }}"></script>
+    <script src="{{ asset('js/api.js') }}"></script>
 </head>
 <body>
+<nav>
+
+
+</nav>
 <div class="ui container">
 @yield('content')
 </div>
