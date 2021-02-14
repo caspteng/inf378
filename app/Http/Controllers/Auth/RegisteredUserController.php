@@ -37,8 +37,11 @@ class RegisteredUserController extends Controller
             'surname' => 'required|string|max:50|min:3',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|confirmed|min:8',
-            'birthday' => 'required',
-        ]);
+            'birthday' => 'required|before:-13 years',
+           ], [
+                'birthday.before' => 'Tu dois avoir minimum 13 ans pour t\'inscrire.',
+                'email.unique' => 'L\'adresse email :input est déjà utilisé'
+            ]);
 
         Auth::login($user = User::create([
             'username' => self::generateUsername($request->surname),
