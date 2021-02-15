@@ -23,6 +23,7 @@ class ProfileController extends Controller
         return view('profile')
             ->with('user', $user)
             ->with('is_profile_owner', $is_profile_owner)
-            ->with('is_follow', $is_follow);
+            ->with('is_follow', $is_follow)
+            ->with ('page_title', "$user->surname (@$username)");
     }
 }
