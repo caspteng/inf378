@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Client\RequestException;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 class TweetController extends Controller
 {
@@ -45,7 +46,6 @@ class TweetController extends Controller
         $tweet->message = $request->message;
         $tweet->user_id = auth()->user()->id;
         $tweet->save();
-
         return redirect(route('tweetForm'));
     }
 }
