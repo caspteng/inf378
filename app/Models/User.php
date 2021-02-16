@@ -60,4 +60,14 @@ class User extends Authenticatable
     {
         return !is_null($this->following()->where('user_followed', $user->id)->first());
     }
+
+    public function like()
+    {
+        return $this->hasMany(Tweet::class);
+    }
+
+    public function liked()
+    {
+
+    }
 }

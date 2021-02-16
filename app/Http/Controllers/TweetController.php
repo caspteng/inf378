@@ -6,6 +6,7 @@ use App\Models\Tweet;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Client\RequestException;
+use Illuminate\Support\Facades\Auth;
 
 
 class TweetController extends Controller
@@ -46,4 +47,22 @@ class TweetController extends Controller
 
         return redirect(route('showTweetForm'));
     }
+
+    public function retweet($tweet_id)
+    {
+        /**
+         * TODO Mettre une condition qui vérifie si l'utilisateur courant a déjà retweet un tweet.
+         * TODO Si c'est le cas, on propose à l'utilisateur d'enlever son précédent retweet, sinon la fonction ci-dessous s'exécute.
+         */
+        Tweet::where('id', $tweet_id)->firstOrFail();
+
+        if (!Tweet::alreadyRetweeted(auth()->user()->id, $tweet_id)) {
+            Tweet::create([
+                'is_retweet' => true,
+                'user_id' => auth()->user()->id,
+                'retweet_id' => $tweet_id,
+            ]);
+        }
+    }
+
 }
