@@ -27,9 +27,9 @@ require __DIR__.'/auth.php';
 ### TWEET ###
 
 Route::get('/tweet', [TweetController::class, 'getAllTweet']);
-Route::get('/tweet/tweetform', [TweetController::class, 'showTweetForm'])
+Route::get('/tweet/create', [TweetController::class, 'showTweetForm'])
 ->name('showTweetForm');
-Route::post('/tweet/tweetform', [TweetController::class, 'store']);
+Route::post('/tweet/create', [TweetController::class, 'store']);
 Route::get('/tweet/{name}', [TweetController::class, 'getAllUserTweetByUsername']);
 
 
