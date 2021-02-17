@@ -34,13 +34,6 @@ class UserController extends Controller
         return response()->json(['success' => 'User unfollowed']);
     }
 
-    public function like()
-    {
 
-    }
-
-    public function unLike()
-    {
-
-    }
 }
+

@@ -65,4 +65,11 @@ class TweetController extends Controller
         }
     }
 
+    public function like($tweet_id)
+    {
+        // TODO Condition si le lien existe déjà (like déjà présent avec le même current user, passer attach à detach
+        $currentUser = auth()->user()->id;
+        $tweet = Tweet::where('id', $tweet_id)->firstOrFail();
+        $currentUser->liking()->attach($tweet->id);
+    }
 }
