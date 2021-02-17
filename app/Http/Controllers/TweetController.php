@@ -48,21 +48,35 @@ class TweetController extends Controller
         return redirect(route('showTweetForm'));
     }
 
-    public function retweet($tweet_id)
+    /**
+     * Retweet if the user has not already retweeted this tweet
+     *
+     * @param int $id
+     */
+    public function retweet(int $id)
     {
-        /**
-         * TODO Mettre une condition qui vérifie si l'utilisateur courant a déjà retweet un tweet.
-         * TODO Si c'est le cas, on propose à l'utilisateur d'enlever son précédent retweet, sinon la fonction ci-dessous s'exécute.
-         */
-        Tweet::where('id', $tweet_id)->firstOrFail();
+        $tweet = Tweet::findOrFail($id);
 
-        if (!Tweet::alreadyRetweeted(auth()->user()->id, $tweet_id)) {
-            Tweet::create([
-                'is_retweet' => true,
-                'user_id' => auth()->user()->id,
-                'retweet_id' => $tweet_id,
-            ]);
-        }
+        Tweet::firstOrCreate([
+            'is_retweet' => true,
+            'user_id' => auth()->user()->id,
+            'retweet_id' => $tweet->id
+        ]);
+    }
+
+    /**
+     * Undo a retweet
+     *
+     * @param int $retweed_id
+     */
+    public function undoRetweet(int $retweed_id)
+    {
+        $tweet = Tweet::where('retweet_id', $retweed_id)
+            ->where('user_id', auth()->user()->id)
+            ->FirstOrFail();
+
+        $tweet->delete();
+
     }
 
     public function like($tweet_id)

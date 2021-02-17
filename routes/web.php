@@ -31,6 +31,7 @@ Route::get('/tweet/create', [TweetController::class, 'showTweetForm'])
 ->name('showTweetForm');
 Route::post('/tweet/create', [TweetController::class, 'store']);
 Route::get('/tweet/{name}', [TweetController::class, 'getAllUserTweetByUsername']);
+Route::get('/retweet/{retweet_id}/undo', [TweetController::class, 'undoRetweet']);
 Route::get('/retweet/{tweet_id}', [TweetController::class, 'retweet']);
 
 

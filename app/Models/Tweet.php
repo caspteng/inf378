@@ -32,7 +32,8 @@ class Tweet extends Model
         return $this->belongsTo(User::class)->withDefault();
     }
 
-    public static function alreadyRetweeted($user_id, $tweet_id) {
+    public static function alreadyRetweeted($user_id, $tweet_id): bool
+    {
         return !is_null(self::where('is_retweet', true)
             ->where('retweet_id', $tweet_id)
             ->where('user_id', $user_id)
