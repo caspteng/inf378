@@ -32,6 +32,13 @@ class Tweet extends Model
         return $this->belongsTo(User::class)->withDefault();
     }
 
+    /**
+     * Checks if the article has already been retweeted by the user passed as a parameter
+     *
+     * @param $user_id
+     * @param $tweet_id
+     * @return bool
+     */
     public static function alreadyRetweeted($user_id, $tweet_id): bool
     {
         return !is_null(self::where('is_retweet', true)

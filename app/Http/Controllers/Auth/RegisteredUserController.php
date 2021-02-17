@@ -10,6 +10,8 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\ValidationException;
+use TweetValidation;
 
 class RegisteredUserController extends Controller
 {
@@ -43,8 +45,15 @@ class RegisteredUserController extends Controller
                 'email.unique' => 'L\'adresse email :input est déjà utilisé'
             ]);
 
+        if (!TweetValidation::checkWords($request->surname)) {
+
+            throw ValidationException::withMessages([
+                'surname' => __('auth.invalid'),
+            ]);
+        }
+
         Auth::login($user = User::create([
-            'username' => self::generateUsername($request->surname),
+            'username' => TweetValidation::generateUsername($request->surname),
             'surname' => $request->surname,
             'email' => $request->email,
             'birthday' => $request->birthday,
@@ -56,21 +65,4 @@ class RegisteredUserController extends Controller
         return redirect(RouteServiceProvider::HOME);
     }
 
-    /**
-     *
-     * Generate a unique username
-     *
-     * @param $username
-     * @return string
-     */
-    public static function generateUsername($username): string
-    {
-        $filterUsername = preg_replace("/[^a-zA-Z0-9]+/", "", $username);
-        $newusername = trim(strtolower($filterUsername));
-        if (User::where('username', '=', $newusername)->first()) {
-            $newusername .= Person::randomNumber(1);
-            return self::generateUsername($newusername);
-        }
-        return $newusername;
-    }
 }

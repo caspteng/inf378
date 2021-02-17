@@ -67,11 +67,11 @@ class TweetController extends Controller
     /**
      * Undo a retweet
      *
-     * @param int $retweed_id
+     * @param int $tweed_id
      */
-    public function undoRetweet(int $retweed_id)
+    public function undoRetweet(int $tweed_id)
     {
-        $tweet = Tweet::where('retweet_id', $retweed_id)
+        $tweet = Tweet::where('retweet_id', $tweed_id)
             ->where('user_id', auth()->user()->id)
             ->FirstOrFail();
 
