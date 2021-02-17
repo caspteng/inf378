@@ -33,7 +33,7 @@ class Tweet extends Model
     }
 
     /**
-     * Checks if the article has already been retweeted by the user passed as a parameter
+     * Checks if the tweet has already been retweeted by the user passed as a parameter
      *
      * @param $user_id
      * @param $tweet_id
