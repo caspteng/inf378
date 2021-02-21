@@ -2,10 +2,11 @@
 
 namespace Database\Factories;
 
-use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
+use TweetValidation;
+
 
 class UserFactory extends Factory
 {
@@ -25,7 +26,7 @@ class UserFactory extends Factory
     {
         return [
             'surname' => $this->faker->name,
-            'username' => RegisteredUserController::generateUsername($this->faker->name),
+            'username' => TweetValidation::generateUsername($this->faker->name),
             'birthday' => $this->faker->date(),
             'biography' => $this->faker->realText(50),
             'email' => $this->faker->unique()->safeEmail,
