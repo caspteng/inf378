@@ -54,3 +54,9 @@ Route::get('follow/{id}', [UserController::class, 'follow'])
     ->middleware(['auth']);
 Route::get('unfollow/{id}', [UserController::class, 'unfollow'])
     ->middleware(['auth']);
+
+### LIKE SYSTEM ###
+
+Route::get('like/{id}', [TweetController::class, 'likeOrUnlike'])
+    ->middleware(['auth'])
+    ->name('like');

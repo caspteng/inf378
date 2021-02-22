@@ -29,5 +29,9 @@ class User
         return DB::table('follows')->where('user_followed', $user_id)->count();
     }
 
+    public static function getLikeCount(int $tweet_id): int
+    {
+        return DB::table('likes')->where('tweet_id', $tweet_id)->count();
+    }
 
 }

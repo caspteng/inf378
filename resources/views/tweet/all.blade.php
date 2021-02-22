@@ -23,9 +23,20 @@
 
                 </td>
             </tr>
+
             </tbody>
 
         </table>
+        @if (Auth::check())
 
+        <div class="ui labeled button" tabindex="0">
+            <a href="{{ route('like', $allTweet->id) }}" class="ui red button">
+                <i class="heart icon"></i> Like
+            </a>
+            <a class="ui basic red left pointing label">
+                {{ TweetUser::getLikeCount($allTweet->id) }}
+            </a>
+        </div>
+        @endif
     @endforeach
 @stop

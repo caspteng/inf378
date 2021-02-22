@@ -98,13 +98,13 @@ class TweetController extends Controller
      */
     public function likeOrUnlike($tweet_id): \Illuminate\Http\JsonResponse
     {
-        $currentUser = auth()->user()->id;
+        $currentUser = User::find(Auth::id());
         try {
-            $tweet = Tweet::where('id', $tweet_id)->firstOrFail();
+            $tweet = Tweet::findOrFail($tweet_id);
         } catch (ModelNotFoundException $exp) {
             return response()->json(['error' => 'Tweet doesn\'t exists']);
         }
-        if ($currentUser->isLiking($tweet->id)) {
+        if ($currentUser->isLiking($tweet)) {
             $currentUser->liking()->detach($tweet->id);
             return response()->json(['success' => 'Tweet unliked']);
         } else {
