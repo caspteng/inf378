@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 class SecurityController extends Controller
 {
     /**
+     *  Custom method for hashing the user password
+     *
      * @param $password
      * @return string
      */

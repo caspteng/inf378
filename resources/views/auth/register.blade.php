@@ -34,13 +34,13 @@
                 <input id="password_confirmation" type="password" name="password_confirmation">
             </div>
         </div>
-        <button class="ui button" type="submit">Submit</button>
+        <button class="ui button" type="submit">S'inscrire</button>
         <div class="ui error message"></div>
-        @if ($errors->has('email'))
+        @if ($errors->any())
             <div class="ui negative message">
-                <ul class="list">
-                    <li>{{ $errors->first('email') }}</li>
-                </ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
             </div>
         @endif
     </form>

@@ -4,13 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
-/**
- * @method static orderBy(string $string)
- * @method static where(string $string, $id)
- */
 class Tweet extends Model
 {
+    use SoftDeletes;
     use HasFactory;
 
     /**
@@ -20,7 +18,32 @@ class Tweet extends Model
      */
     protected $table = 'tweets';
 
+    protected $fillable = [
+        'message',
+        'user_id',
+        'is_retweet',
+        'user_id_retweet',
+        'retweet_id'
+    ];
+
+    protected $dates = ['deleted_at'];
+
     public function user() {
         return $this->belongsTo(User::class)->withDefault();
+    }
+
+    /**
+     * Checks if the tweet has already been retweeted by the user passed as a parameter
+     *
+     * @param $user_id
+     * @param $tweet_id
+     * @return bool
+     */
+    public static function alreadyRetweeted($user_id, $tweet_id): bool
+    {
+        return !is_null(self::where('is_retweet', true)
+            ->where('retweet_id', $tweet_id)
+            ->where('user_id', $user_id)
+            ->first());
     }
 }
