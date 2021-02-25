@@ -10,11 +10,9 @@
         "production": "mix --production"
     },
     "devDependencies": {
-        "alpinejs": "^2.7.3",
         "autoprefixer": "^10.1.0",
         "axios": "^0.21",
         "fomantic-ui": "^2.8.7",
-        "gulp": "^4.0.2",
         "jquery": "^3.3.1",
         "laravel-mix": "^6.0.6",
         "lodash": "^4.17.19",

@@ -21,7 +21,7 @@
             <label for="birthday">Date de naissance</label>
                 <div class="ui input left icon">
                     <i class="calendar icon"></i>
-                    <input id="birthday" name="birthday" type="date" value="{{ old('birthday') }}">
+                    <input id="birthday" name="birthday" type="date" placeholder="YY-mm-dd" {{ old('birthday') }}">
                 </div>
         </div>
         <div class="two fields">

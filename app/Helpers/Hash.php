@@ -1,10 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
+namespace App\Helpers;
 
-class SecurityController extends Controller
+/**
+ * Hash Helper
+ *
+ * @package App\Helpers
+ */
+class Hash
 {
     /**
      *  Custom method for hashing the user password
@@ -12,7 +16,7 @@ class SecurityController extends Controller
      * @param $password
      * @return string
      */
-    public static function myHash($password): string
+    public static function make($password): string
     {
         return hash_hmac(config('auth.encrypt_method'), $password, config('auth.encrypt_key'));
     }

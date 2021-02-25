@@ -5,13 +5,12 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
-use Faker\Provider\Person;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
 use TweetValidation;
+use TweetHash;
 
 class RegisteredUserController extends Controller
 {
@@ -57,7 +56,7 @@ class RegisteredUserController extends Controller
             'surname' => $request->surname,
             'email' => $request->email,
             'birthday' => $request->birthday,
-            'password' => SecurityController::myHash($request->password),
+            'password' => TweetHash::make($request->password),
         ]));
 
         event(new Registered($user));

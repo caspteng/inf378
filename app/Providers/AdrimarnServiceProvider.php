@@ -15,6 +15,7 @@ class AdrimarnServiceProvider extends ServiceProvider
     {
         require_once app_path() . '/Helpers/User.php';
         require_once app_path() . '/Helpers/Validation.php';
+        require_once app_path() . '/Helpers/Hash.php';
     }
 
     /**

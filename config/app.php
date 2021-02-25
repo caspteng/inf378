@@ -229,6 +229,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'TweetUser' => App\Helpers\User::class,
         'TweetValidation' => App\Helpers\Validation::class,
+        'TweetHash' => App\Helpers\Hash::class,
 
     ],
 
