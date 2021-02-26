@@ -14,7 +14,7 @@ class TweetController extends Controller
 {
     public function getAllTweet()
     {
-        $getTweet = Tweet::orderBy('created_at')->get();
+        $getTweet = Tweet::latest()->get();
         return view('tweet.all')
             ->with('allTweets', $getTweet);
     }

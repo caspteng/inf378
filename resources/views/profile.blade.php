@@ -1,14 +1,14 @@
 @extends('layouts.profile')
 @section('content')
-    <div class="row">
-        <div class="column">
+    <div class="ui grid">
+        <div class="four wide column">
             <div class="ui cards">
                 <div class="card">
                     <div class="image">
-                        <img src="
+                        <img alt="{{ $user->surname }}" src="
                               {{ $user->avatar_picture ??
                               '//eu.ui-avatars.com/api/?size=290&&color=ffffff&background=555b6e&name=' . $user->surname . '&format=svg'
-                              }} " alt="{{ $user->surname }}">
+                              }}">
                     </div>
                     <div class="content">
                         <div class="header">{{ $user->surname }}</div>
@@ -46,4 +46,36 @@
                 </div>
             </div>
         </div>
+    <div class="twelve wide column">
+        @foreach($user->timeline() as $tweet)
+            <div class="ui feed raised segment">
+                <div class="event">
+                    <div class="label">
+                        <div class="image">
+                            <img alt="{{ $user->surname }}" src="
+                              {{ $user->avatar_picture ??
+                              '//eu.ui-avatars.com/api/?size=290&&color=ffffff&background=555b6e&name=' . $user->surname . '&format=svg'
+                              }}">
+                        </div>
+                    </div>
+                    <div class="content">
+                        <div class="summary">
+                            <a>{{ $tweet->user['surname'] }}</a> {{ '@' . $tweet->user['username'] }}
+                            <div class="date">
+                                {{ $tweet->created_at->format('d/m/Y') }}
+                            </div>
+                        </div>
+                        <div class="extra text">
+                            {{ $tweet->message }}
+                        </div>
+                        <div class="meta">
+                            <a class="like">
+                                <i class="like icon"></i> {{ TweetUser::getLikeCount($tweet->id) }} Likes
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endforeach
+    </div>
 @stop
