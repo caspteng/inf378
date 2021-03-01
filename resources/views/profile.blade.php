@@ -48,6 +48,11 @@
             </div>
         </div>
         <div class="twelve wide column">
+
+            @if ($is_profile_owner)
+                <x-publish-tweet-form></x-publish-tweet-form>
+            @endif
+
             @foreach($user->timeline() as $tweet)
                 <div class="ui feed raised segment">
                     <div class="event">

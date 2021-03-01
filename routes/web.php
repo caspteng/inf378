@@ -35,11 +35,9 @@ require __DIR__.'/auth.php';
 ### TWEET ###
 
 Route::get('/tweet', [TweetController::class, 'getAllTweet']);
-Route::get('/tweet/create', [TweetController::class, 'showTweetForm'])
-    ->name('showTweetForm')
-    ->middleware('auth');
 Route::post('/tweet/create', [TweetController::class, 'store'])
-    ->middleware('auth');
+    ->middleware('auth')
+    ->name('create_tweet');
 Route::get('/tweet/{name}', [TweetController::class, 'getAllUserTweetByUsername']);
 
 ### RETWEET SYSTEM ###

@@ -30,23 +30,19 @@ class TweetController extends Controller
             ->with('user', $user);
     }
 
-    public function showTweetForm()
-    {
-        return view('tweet.tweetform');
-    }
-
     public function store(Request $request)
     {
-        $request->validate([
-            'message' => 'required|string|max:160|min:10'
+        $attribute = $request->validate([
+            'message' => 'required|string|max:140|min:10'
 
         ]);
+
         Tweet::create([
-            'message' => $request->message,
+            'message' => $attribute['message'],
             'user_id' => auth()->user()->id,
         ]);
 
-        return redirect(route('showTweetForm'));
+        return redirect(route('profile'));
     }
 
     /**
