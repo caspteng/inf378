@@ -58,6 +58,9 @@ class TweetController extends Controller
         } catch (ModelNotFoundException $exp) {
             return response()->json(['error' => 'Tweet doesn\'t exists']);
         }
+        if ($tweet->is_retweet == true && $tweet->user_id == auth()->user()->id) {
+            return response()->json(['error' => 'Can\'t retweet a retweet']);
+        }
         Tweet::firstOrCreate([
             'is_retweet' => true,
             'user_id' => auth()->user()->id,

@@ -3,6 +3,7 @@
 
 namespace App\Helpers;
 
+use App\Models\Tweet;
 use Illuminate\Support\Facades\DB;
 
 /**
@@ -32,6 +33,10 @@ class User
     public static function getLikeCount(int $tweet_id): int
     {
         return DB::table('likes')->where('tweet_id', $tweet_id)->count();
+    }
+    public static function getRetweetCount(int $tweet_id): int
+    {
+        return Tweet::where('retweet_id', $tweet_id)->count();
     }
 
 }

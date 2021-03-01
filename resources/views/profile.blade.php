@@ -54,7 +54,7 @@
             @endif
 
             @foreach($user->timeline() as $tweet)
-                <div class="ui feed raised segment">
+                <div class="ui large feed raised segment">
                     <div class="event">
                         <div class="label">
                             <div class="image">
@@ -73,12 +73,29 @@
                                 </div>
                             </div>
                             <div class="extra text">
+                                @if ($tweet->is_retweet)
+                                    <b> <i class="retweet icon"></i> {{ $is_profile_owner ? 'Vous avez retweeté' : $tweet->user->surname . ' a retweeté'}}</b>
+                                @endif
                                 {{ $tweet->message }}
                             </div>
                             <div class="meta">
-                                <a class="like">
+                                <a href="{{ route('like', $tweet->id) }}"
+                                   class="like @if (Auth::check()) {{ auth()->user()->isLiking($tweet) ? 'active' : ''}} @endif">
                                     <i class="like icon"></i> {{ TweetUser::getLikeCount($tweet->id) }} Likes
                                 </a>
+                                @if ($tweet->is_retweet && Auth::check())
+                                    <a href="{{ $tweet::alreadyRetweeted(auth()->user()->id, $tweet->retweet_id) ?
+                                    route('retweet_undo', $tweet->retweet_id) : route('retweet', $tweet->retweet_id)  }}"
+                                       class="retweet {{ $tweet::alreadyRetweeted(auth()->user()->id, $tweet->retweet_id) ? 'active' : ''}}">
+                                        <i class="retweet icon"></i> {{ TweetUser::getRetweetCount($tweet->retweet_id) }}
+                                    </a>
+                                @else
+                                    <a @if (Auth::check()) href="{{ $tweet::alreadyRetweeted(auth()->user()->id, $tweet->id) ?
+                                    route('retweet_undo', $tweet->id) : route('retweet', $tweet->id) }} @endif"
+                                       class="retweet @if (Auth::check()) {{ $tweet::alreadyRetweeted(auth()->user()->id, $tweet->id) ? 'active' : ''}} @endif">
+                                        <i class="retweet icon"></i> {{ TweetUser::getRetweetCount($tweet->id) }}
+                                    </a>
+                                @endif
                             </div>
                         </div>
                     </div>

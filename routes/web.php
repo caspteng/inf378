@@ -42,9 +42,11 @@ Route::get('/tweet/{name}', [TweetController::class, 'getAllUserTweetByUsername'
 
 ### RETWEET SYSTEM ###
 Route::get('/retweet/{tweet_id}/undo', [TweetController::class, 'undoRetweet'])
-    ->middleware('auth');
+    ->middleware('auth')
+    ->name('retweet_undo');
 Route::get('/retweet/{tweet_id}', [TweetController::class, 'retweet'])
-    ->middleware('auth');
+    ->middleware('auth')
+    ->name('retweet');
 
 
 ### PROFIL PAGE ###
