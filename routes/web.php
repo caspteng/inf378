@@ -17,9 +17,17 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('home');
-});
+    return view('welcome');
+})
+    ->middleware('guest');
 
+
+### HOME (TIMELINE) ###
+// TODO: Adding Timeline
+Route::get('/home', function () {
+    return redirect('/profile');
+})
+    ->middleware('auth');
 
 require __DIR__.'/auth.php';
 
@@ -29,34 +37,34 @@ require __DIR__.'/auth.php';
 Route::get('/tweet', [TweetController::class, 'getAllTweet']);
 Route::get('/tweet/create', [TweetController::class, 'showTweetForm'])
     ->name('showTweetForm')
-    ->middleware(['auth']);
+    ->middleware('auth');
 Route::post('/tweet/create', [TweetController::class, 'store'])
-    ->middleware(['auth']);
+    ->middleware('auth');
 Route::get('/tweet/{name}', [TweetController::class, 'getAllUserTweetByUsername']);
 
 ### RETWEET SYSTEM ###
 Route::get('/retweet/{tweet_id}/undo', [TweetController::class, 'undoRetweet'])
-    ->middleware(['auth']);
+    ->middleware('auth');
 Route::get('/retweet/{tweet_id}', [TweetController::class, 'retweet'])
-    ->middleware(['auth']);
+    ->middleware('auth');
 
 
 ### PROFIL PAGE ###
 Route::get('/profile', function() {
     return redirect('/' . auth()->user()->username);
-})->middleware(['auth'])->name('profile');
+})->middleware('auth')->name('profile');
 Route::get('/{username}', [ProfileController::class, 'show']);
 
 
 ### FOLLOWING SYSTEM ###
 
 Route::get('follow/{id}', [UserController::class, 'follow'])
-    ->middleware(['auth']);
+    ->middleware('auth');
 Route::get('unfollow/{id}', [UserController::class, 'unfollow'])
-    ->middleware(['auth']);
+    ->middleware('auth');
 
 ### LIKE SYSTEM ###
 
 Route::get('like/{id}', [TweetController::class, 'likeOrUnlike'])
-    ->middleware(['auth'])
+    ->middleware('auth')
     ->name('like');
