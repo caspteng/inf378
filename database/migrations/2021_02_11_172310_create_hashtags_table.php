@@ -16,7 +16,7 @@ class CreateHashtagsTable extends Migration
         Schema::create('hashtags', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->bigInteger('tweet_id')->unsigned();
+            $table->foreignId('tweet_id');
         });
     }
 

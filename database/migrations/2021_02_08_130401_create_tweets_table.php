@@ -15,11 +15,11 @@ class CreateTweetsTable extends Migration
     {
         Schema::create('tweets', function (Blueprint $table) {
             $table->id();
-            $table->string('message',140)->nullable();
-            $table->unsignedBigInteger('user_id');
+            $table->text('message')->nullable();
+            $table->foreignId('user_id');
             $table->boolean('is_retweet')->default(false);
-            $table->unsignedBigInteger('user_id_retweet')->nullable();
-            $table->unsignedBigInteger('retweet_id')->nullable();
+            $table->foreignId('user_id_retweet')->nullable();
+            $table->foreignId('retweet_id')->nullable();
             $table->boolean('is_deleted')->default(false);
             $table->timestamps();
         });

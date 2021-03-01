@@ -15,7 +15,7 @@ class CreateTweetsImagesTable extends Migration
     {
         Schema::create('tweets_images', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('tweet_id')->unsigned();
+            $table->foreignId('tweet_id');
             $table->text('img_path')->nullable();
         });
     }

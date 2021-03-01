@@ -16,7 +16,7 @@ class CreateTweetsCommentsTable extends Migration
         Schema::create('tweets_comments', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('tweet_id')->unsigned();
-            $table->bigInteger('user_id')->unsigned();
+            $table->foreignId('user_id');
             $table->string('message', 140);
             $table->boolean('is_deleted')->default(false);
             $table->timestamps();
