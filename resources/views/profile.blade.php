@@ -105,7 +105,7 @@
                                     <a @if (Auth::check()) href="{{ $tweet::alreadyRetweeted(auth()->user()->id, $tweet->id) ?
                                     route('retweet_undo', $tweet->id) : route('retweet', $tweet->id) }} @endif"
                                        class="retweet @if (Auth::check()) {{ $tweet::alreadyRetweeted(auth()->user()->id, $tweet->id) ? 'active' : ''}} @endif">
-                                        <i class="retweet icon"></i> {{ TweetUser::getRetweetCount($tweet->id) }}
+                                        <i class="retweet icon"></i> {{ TweetUser::getRetweetCount($tweet->is_retweet ? $tweet->retweet->id : $tweet->id) }}
                                     </a>
                                 @endif
                                 @if (Auth::check())

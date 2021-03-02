@@ -1,7 +1,7 @@
 <!-- Sidebar Menu -->
-<div class="ui grey vertical inverted sidebar visible icon menu" id="sidebar">
-    <a class="active blue item" href="#">
-        <i class="twitter big icon"></i>
+<div class="ui grey vertical inverted left sidebar visible icon menu" style="width: 8%">
+    <a class="active blue item" href="#" style="padding-top: 2em; padding-bottom: 2em;">
+        <i class="twitter huge icon"></i>
     </a>
     <a class="item" href="{{ route('home') }}">
         <i class="home big icon"></i>
