@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Tweet extends Model
 {
-    use SoftDeletes;
     use HasFactory;
 
     /**
@@ -30,6 +29,10 @@ class Tweet extends Model
 
     public function user() {
         return $this->belongsTo(User::class)->withDefault();
+    }
+
+    public function retweet() {
+        return $this->BelongsTo(Tweet::class, 'retweet_id');
     }
 
     /**

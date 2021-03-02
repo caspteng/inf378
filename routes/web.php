@@ -38,6 +38,9 @@ Route::get('/tweet', [TweetController::class, 'getAllTweet']);
 Route::post('/tweet/create', [TweetController::class, 'store'])
     ->middleware('auth')
     ->name('create_tweet');
+Route::get('/tweet/{id}/destroy', [TweetController::class, 'drop'])
+    ->middleware('auth')
+    ->name('destroy_tweet');
 Route::get('/tweet/{name}', [TweetController::class, 'getAllUserTweetByUsername']);
 
 ### RETWEET SYSTEM ###

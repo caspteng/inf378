@@ -16,7 +16,8 @@ class CreateForeignKeys extends Migration
         Schema::table('tweets', function (Blueprint $table) {
             $table->foreign('user_id')
                 ->references('id')
-                ->on('users');
+                ->on('users')
+                ->onDelete('cascade');
 
             $table->foreign('user_id_retweet')
                 ->references('id')
@@ -24,7 +25,8 @@ class CreateForeignKeys extends Migration
 
             $table->foreign('retweet_id')
                 ->references('id')
-                ->on('tweets');
+                ->on('tweets')
+                ->onDelete('cascade');
         });
 
         Schema::table('messages', function (Blueprint $table) {
@@ -40,37 +42,44 @@ class CreateForeignKeys extends Migration
         Schema::table('likes', function (Blueprint $table) {
             $table->foreign('tweet_id')
                 ->references('id')
-                ->on('tweets');
+                ->on('tweets')
+                ->onDelete('cascade');
 
             $table->foreign('user_id')
                 ->references('id')
-                ->on('users');
+                ->on('users')
+                ->onDelete('cascade');
         });
 
         Schema::table('follows', function (Blueprint $table) {
             $table->foreign('user_followed')
                 ->references('id')
-                ->on('users');
+                ->on('users')
+                ->onDelete('cascade');
 
             $table->foreign('user_as_follow')
                 ->references('id')
-                ->on('users');
+                ->on('users')
+                ->onDelete('cascade');
         });
 
         Schema::table('tweets_images', function (Blueprint $table) {
             $table->foreign('tweet_id')
                 ->references('id')
-                ->on('tweets');
+                ->on('tweets')
+                ->onDelete('cascade');
         });
 
         Schema::table('tweets_comments', function (Blueprint $table) {
             $table->foreign('tweet_id')
                 ->references('id')
-                ->on('tweets');
+                ->on('tweets')
+                ->onDelete('cascade');
 
             $table->foreign('user_id')
                 ->references('id')
-                ->on('users');
+                ->on('users')
+                ->onDelete('cascade');
         });
 
         Schema::table('hashtags', function (Blueprint $table) {
