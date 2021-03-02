@@ -21,13 +21,13 @@ Route::get('/', function () {
 })
     ->middleware('guest');
 
-
 ### HOME (TIMELINE) ###
 // TODO: Adding Timeline
 Route::get('/home', function () {
     return redirect('/profile');
 })
-    ->middleware('auth');
+    ->middleware('auth')
+    ->name('home');
 
 require __DIR__.'/auth.php';
 

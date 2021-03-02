@@ -1,7 +1,7 @@
 @extends('layouts.auth')
 @section('content')
 
-
+    <x-sidebar-menu/>
     <h1 class="ui header">Liste des tweet</h1>
 
     @foreach ($allTweets as $allTweet)

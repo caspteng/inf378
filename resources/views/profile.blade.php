@@ -1,5 +1,6 @@
 @extends('layouts.profile')
 @section('content')
+    <x-sidebar-menu/>
     <div class="ui grid">
         <div class="four wide column">
             <div class="ui cards">
@@ -47,7 +48,7 @@
                 </div>
             </div>
         </div>
-        <div class="twelve wide column">
+        <div class="nine wide column">
 
             <x-flash-message/>
             @if ($is_profile_owner)
@@ -120,7 +121,9 @@
                 </div>
             @endforeach
         </div>
+        <x-right-content/>
         <x-modal-tweet-remove/>
+    </div>
         <script>
             $('.tw-delete').click(function () {
                 let confirmBtnEle = $("#confirm-button");
