@@ -19,17 +19,6 @@ class TweetController extends Controller
             ->with('allTweets', $getTweet);
     }
 
-    public function getAllUserTweetByUsername($name)
-    {
-        $user = User::where('username', $name)->firstOrFail();
-
-        $getUserTweet = Tweet::where('user_id', $user->id)->get();
-
-        return view('tweet.user')
-            ->with('userTweets', $getUserTweet)
-            ->with('user', $user);
-    }
-
     public function store(Request $request)
     {
         $attribute = $request->validate([

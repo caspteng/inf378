@@ -1,6 +1,4 @@
 {
     "/js/app.js": "/js/app.js",
-    "/css/app.css": "/css/app.css",
-    "/assets/semantic/semantic.min.css": "/assets/semantic/semantic.min.css",
-    "/assets/semantic/semantic.min.js": "/assets/semantic/semantic.min.js"
+    "/css/app.css": "/css/app.css"
 }

@@ -10,13 +10,13 @@
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/semantic/semantic.min.css') }}">
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" ></script>
+    <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('assets/semantic/semantic.min.js') }}"></script>
 </head>
 <body>
 <div class="ui container">
 
-@yield('content')
+    @yield('content')
 
 </div>
 </body>

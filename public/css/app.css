@@ -1,6 +1,5 @@
 .ui.feed > .event > .content .meta .like {
     color: '';
-    -webkit-transition: .2s color ease;
     transition:.2s color ease
 }
 
@@ -11,3 +10,4 @@
 .ui.feed > .event > .content .meta .active.retweet i.icon {
     color:#7bf1a8
 }
+

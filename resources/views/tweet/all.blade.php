@@ -1,7 +1,6 @@
-@extends('layouts.auth')
+@extends('layouts.app')
 @section('content')
 
-    <x-sidebar-menu/>
     <h1 class="ui header">Liste des tweet</h1>
 
     @foreach ($allTweets as $allTweet)
@@ -29,14 +28,14 @@
         </table>
         @if (Auth::check())
 
-        <div class="ui labeled button" tabindex="0">
-            <a href="{{ route('like', $allTweet->id) }}" class="ui red button">
-                <i class="heart icon"></i> Like
-            </a>
-            <a class="ui basic red left pointing label">
-                {{ TweetUser::getLikeCount($allTweet->id) }}
-            </a>
-        </div>
+            <div class="ui labeled button" tabindex="0">
+                <a href="{{ route('like', $allTweet->id) }}" class="ui red button">
+                    <i class="heart icon"></i> Like
+                </a>
+                <a class="ui basic red left pointing label">
+                    {{ TweetUser::getLikeCount($allTweet->id) }}
+                </a>
+            </div>
         @endif
     @endforeach
 @stop

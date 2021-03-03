@@ -43,6 +43,32 @@ jQuery(document).ready(function () {
         }
     })
 
+    $('.tw-delete').click(function () {
+        let confirmBtnEle = $("#confirm-button");
+        let tweetID = $(this).data('id');
+        confirmBtnEle.attr('href', 'tweet/' + tweetID + '/destroy');
+        $('.mini.modal').modal('show');
+    });
+
+
+    $('ul.pagination').hide();
+    $(function () {
+        $('.scrolling-pagination').jscroll({
+            loadingHtml: '<div class="ui large feed raised segment">\n' +
+                '  <div class="ui active inverted dimmer">\n' +
+                '    <div class="ui text loader">Chargement</div>\n' +
+                '  </div>\n' +
+                '  <img class="ui wireframe image" src="../assets/images/wireframe/short-paragraph.png">\n' +
+                '</div>',
+            autoTrigger: true,
+            padding: 0,
+            nextSelector: '.pagination li.active + li a',
+            contentSelector: 'div.scrolling-pagination',
+            callback: function () {
+                $('ul.pagination').remove();
+            }
+        });
+    });
 
 });
 

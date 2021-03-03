@@ -29,7 +29,7 @@ Route::get('/home', function () {
     ->middleware('auth')
     ->name('home');
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
 
 
 ### TWEET ###
@@ -41,7 +41,6 @@ Route::post('/tweet/create', [TweetController::class, 'store'])
 Route::get('/tweet/{id}/destroy', [TweetController::class, 'drop'])
     ->middleware('auth')
     ->name('destroy_tweet');
-Route::get('/tweet/{name}', [TweetController::class, 'getAllUserTweetByUsername']);
 
 ### RETWEET SYSTEM ###
 Route::get('/retweet/{tweet_id}/undo', [TweetController::class, 'undoRetweet'])
@@ -53,7 +52,7 @@ Route::get('/retweet/{tweet_id}', [TweetController::class, 'retweet'])
 
 
 ### PROFIL PAGE ###
-Route::get('/profile', function() {
+Route::get('/profile', function () {
     return redirect('/' . auth()->user()->username);
 })->middleware('auth')->name('profile');
 Route::get('/{username}', [ProfileController::class, 'show']);
