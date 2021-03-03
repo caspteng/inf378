@@ -17,10 +17,15 @@
     </a>
     <a class="item" href="#">
         <i class="envelope big icon"></i>
-       Messages
+        Messages
     </a>
-    <a class="item" href="#">
-        <i class="cog big icon"></i>
-        Réglages
-    </a>
+    @auth
+        <form id="tw-logout" action="{{ route('logout') }}" method="POST" style="display: none;">
+            @csrf
+        </form>
+        <a class="item" href="#" onclick="document.getElementById('tw-logout').submit();">
+            <i class="cog big icon"></i>
+            Réglages (Déconnexion)
+        </a>
+    @endauth
 </div>

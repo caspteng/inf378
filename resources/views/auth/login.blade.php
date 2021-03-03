@@ -23,11 +23,11 @@
                         <button class="ui blue submit button" type="submit">Login</button>
                         <div class="ui error message"></div>
                         @if ($errors->has('login'))
-                        <div class="ui negative message">
-                            <ul class="list">
-                                <li>{{ $errors->first()  }}</li>
-                            </ul>
-                        </div>
+                            <div class="ui negative message">
+                                <ul class="list">
+                                    <li>{{ $errors->first()  }}</li>
+                                </ul>
+                            </div>
                         @endif
                     </div>
                 </div>
@@ -43,31 +43,31 @@
             </div>
         </div>
     </form>
-<script>
-    $('.form')
-        .form({
-            on: 'blur',
-            fields: {
-                login: {
-                    identifier: 'login',
-                    rules: [
-                        {
-                            type: 'empty',
-                            prompt: 'Merci d\'indiquer votre nom d\'utilisateur ou email'
-                        }
-                    ]
-                },
-                password: {
-                    identifier: 'password',
-                    rules: [
-                        {
-                            type: 'empty',
-                            prompt: 'Le champ mot de passe est requis'
-                        }
-                    ]
-                },
-            }
-        })
-    ;
-</script>
+    <script>
+        $('.form')
+            .form({
+                on: 'blur',
+                fields: {
+                    login: {
+                        identifier: 'login',
+                        rules: [
+                            {
+                                type: 'empty',
+                                prompt: 'Merci d\'indiquer votre nom d\'utilisateur ou email'
+                            }
+                        ]
+                    },
+                    password: {
+                        identifier: 'password',
+                        rules: [
+                            {
+                                type: 'empty',
+                                prompt: 'Le champ mot de passe est requis'
+                            }
+                        ]
+                    },
+                }
+            })
+        ;
+    </script>
 @stop
