@@ -21,43 +21,43 @@
 
 
 <body>
-<div class="main">
-    <div class="main-wrapper">
-        <div class="left">
-            <div class="items-wrapper">
-                <div class="item">
-                    <span class="label"><i class="large search icon"></i> Retrouvez vos centres d'intérêt.</span>
-                </div>
-                <div class="item">
+
+<div class="ui equal width center aligned middle aligned grid">
+    <div class="row ">
+        <div class="blue column tweet">
+
+            <div class="item ">
+                <span class="label"><i class="large search icon"></i> Retrouvez vos centres d'intérêt.</span>
+            </div>
+            <br>
+            <div class="item">
                     <span class="label"><i class="large newspaper icon"></i> Discutez des tendances qui
                         <br>vous tiennent à cœur.</span>
-                </div>
-                <div class="item">
-                    <span class="label"><i class="large heart icon"></i> Partagez, aimez, retweetez...</span>
-                </div>
             </div>
+            <br>
+            <div class="item">
+                <span class="label"><i class="large heart icon"></i> Partagez, aimez, retweetez...</span>
+            </div>
+
         </div>
-        <div class="right">
-            <div class="middle">
-                <h1><i class="twitter icon"></i> Ça se passe maintenant.</h1>
-                <span>Rejoignez Tweet Académie.</span><br>
-                <a href="{{ route('login') }}" class="ui primary button">Se connecter
-                    <i class="angle right icon"></i></a>
-                <a href="{{ route('register') }}" class="ui button">S'inscrire
-                    <i class="angle right icon"></i></a>
+        <div class="column">
+            <div class="right-content middle aligned">
+            <h1><i class="twitter blue icon"></i> Ça se passe maintenant.</h1>
+            <span class="medium text">Rejoignez Tweet Académie.</span><br>
+            <a href="{{ route('login') }}" class="ui primary button">Se connecter
+                <i class="angle right icon"></i></a>
+            <a href="{{ route('register') }}" class="ui button">S'inscrire
+                <i class="angle right icon"></i></a>
             </div>
         </div>
     </div>
-    <footer class="footer">
-        <nav class="nav">
-            <ul>
-                <li>
-                    <a>© 2021 Web@cadémie - TweetAcadémie</a>
-                </li>
-            </ul>
-        </nav>
-    </footer>
-</div>
 
+    <div class="row" style="background-color: #e9e9e9;">
+        <div class="middle aligned column">
+            © 2021 Web@cadémie - TweetAcadémie
+        </div>
+
+    </div>
+</div>
 </body>
 </html>
