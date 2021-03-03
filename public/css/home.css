@@ -1,38 +1,18 @@
+html,
 body {
-    margin: 0;
-    font-family: "Segoe UI", Arial, sans-serif;
-    background-color: #f1f1f1;
+    height: 100%;
 }
 
-@keyframes gradient {
-    0% {
-        background-position: 0% 50%;
-    }
-    50% {
-        background-position: 100% 50%;
-    }
-    100% {
-        background-position: 0 50%;
-    }
+.maincontainer {
+    height: 100%;
 }
 
-.ui.equal.width.aligned.middle.aligned.grid {
-    height: 30%;
+.wrapper {
+    height: 100%;
 }
 
-.ui.equal.width.aligned.grid > .row {
-    padding-bottom: 0;
-}
-
-.ui.equal.width.aligned.grid > .row > .blue.column {
-    background-color: #2185d0;
-    padding-top: 14.9%;
-    padding-bottom: 14.9%;
-}
-
-.ui.equal.width.aligned.grid > .row > .column {
-    padding-top: 1%;
-    padding-bottom: 1%;
+.ui.grid {
+    min-height: calc(100vh - 20px);
 }
 
 .item {
@@ -44,9 +24,11 @@ body {
 .large.search.icon {
     margin-left: 1.2em;
 }
+
 .large.heart.icon {
     margin-left: 0.2em;
 }
+
 .ui.primary.button {
     margin-top: 3.5rem;
 }
@@ -55,10 +37,15 @@ body {
     font-size: 2rem;
 }
 
+.left-content {
+    margin: 50vh auto 0;
+    transform: translateY(-50%);
+}
+
 .right-content {
     width: 70%;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 50vh auto 0;
+    transform: translateY(-50%);
 }
 
 .right-content h1 {
