@@ -6,10 +6,7 @@
                 <div class="card">
                     <div class="image">
                         <img alt="{{ $user->surname }}"
-                             src="{{ $user->avatar_picture ??
-                              '//eu.ui-avatars.com/api/?size=290&&color=ffffff&background=555b6e&name='
-                               . $user->surname . '&format=svg'
-                              }}">
+                             src="{{ $user->avatar }}">
                     </div>
                     <div class="content">
                         <div class="header">{{ $user->surname }}</div>
@@ -65,14 +62,8 @@
                             <div class="label">
                                 <div class="image">
                                     <img
-                                        alt="{{ $tweet->is_retweet ? $tweet->retweet->user->surname :$tweet->user->surname }}"
-                                        src="{{ $tweet->is_retweet ? $tweet->retweet->user->avatar_picture ??
-                                    '//eu.ui-avatars.com/api/?size=290&&color=ffffff&background=555b6e&name='
-                                            . $tweet->retweet->user->surname . '&format=svg' :
-                                        $tweet->user->avatar_picture ??
-                                    '//eu.ui-avatars.com/api/?size=290&&color=ffffff&background=555b6e&name='
-                                            . $tweet->user->surname . '&format=svg'
-                              }}">
+                                        alt="{{ $tweet->is_retweet ? $tweet->retweet->user->surname : $tweet->user->surname }}"
+                                        src="{{ $tweet->is_retweet ? $tweet->retweet->user->avatar : $tweet->user->avatar }}">
                                 </div>
                             </div>
                             <div class="content">
@@ -90,7 +81,7 @@
                                 </div>
                                 <div class="meta">
                                     <a href="{{ route('like', $tweet->is_retweet ? $tweet->retweet_id : $tweet->id) }}"
-                                       class="like @if (Auth::check()) {{ auth()->user()->isLiking($tweet->is_retweet ? $tweet->retweet : $tweet) ? 'active' : ''}} @endif">
+                                       class="like @auth {{ auth()->user()->isLiking($tweet->is_retweet ? $tweet->retweet : $tweet) ? 'active' : ''}} @endauth">
                                         <i class="like icon"></i>
                                         {{ TweetUser::getLikeCount($tweet->is_retweet ? $tweet->retweet_id : $tweet->id) }}
                                     </a>
@@ -101,19 +92,19 @@
                                             <i class="retweet icon"></i> {{ TweetUser::getRetweetCount($tweet->retweet_id) }}
                                         </a>
                                     @else
-                                        <a @if (Auth::check()) href="{{ $tweet::alreadyRetweeted(auth()->user()->id, $tweet->id) ?
-                                    route('retweet_undo', $tweet->id) : route('retweet', $tweet->id) }} @endif"
-                                           class="retweet @if (Auth::check()) {{ $tweet::alreadyRetweeted(auth()->user()->id, $tweet->id) ? 'active' : ''}} @endif">
+                                        <a @auth href="{{ $tweet::alreadyRetweeted(auth()->user()->id, $tweet->id) ?
+                                    route('retweet_undo', $tweet->id) : route('retweet', $tweet->id) }} @endauth"
+                                           class="retweet @auth {{ $tweet::alreadyRetweeted(auth()->user()->id, $tweet->id) ? 'active' : ''}} @endauth">
                                             <i class="retweet icon"></i> {{ TweetUser::getRetweetCount($tweet->is_retweet ? $tweet->retweet->id : $tweet->id) }}
                                         </a>
                                     @endif
-                                    @if (Auth::check())
+                                    @auth
                                         @if ($tweet->user_id == auth()->user()->id && $tweet->is_retweet == false)
                                             <a href="#" class="tw-delete" data-id="{{ $tweet->id }}">
                                                 <i class="remove icon"></i>
                                             </a>
                                         @endif
-                                    @endif
+                                    @endauth
                                 </div>
                             </div>
                         </div>
