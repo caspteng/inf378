@@ -23,9 +23,7 @@ Route::get('/', function () {
 
 ### HOME (TIMELINE) ###
 // TODO: Adding Timeline
-Route::get('/home', function () {
-    return redirect('/profile');
-})
+Route::get('/home',[TweetController::class, 'index'])
     ->middleware('auth')
     ->name('home');
 
@@ -60,13 +58,13 @@ Route::get('/{username}', [ProfileController::class, 'show']);
 
 ### FOLLOWING SYSTEM ###
 
-Route::get('follow/{id}', [UserController::class, 'follow'])
+Route::get('/follow/{id}', [UserController::class, 'follow'])
     ->middleware('auth');
-Route::get('unfollow/{id}', [UserController::class, 'unfollow'])
+Route::get('/unfollow/{id}', [UserController::class, 'unfollow'])
     ->middleware('auth');
 
 ### LIKE SYSTEM ###
 
-Route::get('like/{id}', [TweetController::class, 'likeOrUnlike'])
+Route::get('/like/{id}', [TweetController::class, 'likeOrUnlike'])
     ->middleware('auth')
     ->name('like');

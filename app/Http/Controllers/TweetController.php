@@ -12,6 +12,14 @@ use Illuminate\Support\Facades\Auth;
 
 class TweetController extends Controller
 {
+
+    public function index()
+    {
+        $user = User::find(auth()->user()->id);
+        return view('home')
+            ->with('user', $user);
+    }
+
     public function getAllTweet()
     {
         $getTweet = Tweet::latest()->get();
