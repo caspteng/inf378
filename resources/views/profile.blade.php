@@ -29,7 +29,7 @@
 
                     @auth
                         @if ($is_profile_owner)
-                            <a class="ui bottom attached button">
+                            <a class="ui bottom attached button edit_profil">
                                 <i class="user icon"></i>
                                 Edit Profil
                             </a>
@@ -54,4 +54,5 @@
         <x-right-content/>
         <x-modal-tweet-remove/>
     </div>
+    @include('_edit-profil')
 @stop
