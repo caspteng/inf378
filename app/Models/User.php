@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use TweetUser;
 
 
 class User extends Authenticatable
@@ -51,6 +52,19 @@ class User extends Authenticatable
             . $this->surname . '&format=svg';
     }
 
+    public function getProfilWidgetAttribute()
+    {
+        return "
+        <img src='" . $this->avatar . "' alt='' class='ui avatar image'>
+        <div class='header'>" . $this->surname . "</div>
+        <p style='color: grey'>@" . $this->username . "</p>
+        <p>" . $this->biography . "</p>
+        <p><b>" . $this->count_following . "</b><span style='color: grey'> abonnements</span>
+        <b>" . $this->count_follower . "</b><span style='color: grey'> abonnés</span></p>
+        ";
+
+    }
+
     public function tweet()
     {
         return $this->hasMany(Tweet::class);
@@ -83,13 +97,25 @@ class User extends Authenticatable
     /**
      * Function to follow a user
      *
-     * @return object
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function following()
     {
         return $this->belongsToMany(User::class, 'follows',
             'user_as_follow', 'user_followed')
             ->withTimestamps();
+    }
+
+
+    /**
+     * Users that follow this user
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function follower()
+    {
+        return $this->belongsToMany(User::class, 'follows',
+            'user_followed', 'user_as_follow');
     }
 
     /**
@@ -106,6 +132,26 @@ class User extends Authenticatable
     public function liking()
     {
         return $this->belongsToMany(User::class, 'likes', 'user_id', 'tweet_id');
+    }
+
+    /**
+     * Count users that follow this user
+     *
+     * @return int
+     */
+    public function getCountFollowerAttribute()
+    {
+        return count($this->follower);
+    }
+
+    /**
+     * Get following user count
+     *
+     * @return int
+     */
+    public function getCountFollowingAttribute()
+    {
+        return count($this->following);
     }
 
     /**

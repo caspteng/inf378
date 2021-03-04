@@ -70,6 +70,14 @@ jQuery(document).ready(function () {
         });
     });
 
+    const userPopup = $('.user-popup');
+    $(userPopup).mouseenter(function () {
+        $(this).popup('show')
+    });
+    $(userPopup).mouseleave(function () {
+        $(this).popup('hidden')
+    });
+
 });
 
 

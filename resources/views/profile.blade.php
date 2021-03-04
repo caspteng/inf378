@@ -23,11 +23,11 @@
                           </span>
                         <span>
                             <i class="user icon"></i>
-                            {{ TweetUser::getFollowCount($user->id) }} followers
+                            {{ $user->count_follower }} followers
                           </span>
                     </div>
 
-                    @if (Auth::check())
+                    @auth
                         @if ($is_profile_owner)
                             <a class="ui bottom attached button">
                                 <i class="user icon"></i>
@@ -40,7 +40,7 @@
                                 {{ $is_follow ? 'Suivre' : 'Se désabonné' }}
                             </div>
                         @endif
-                    @endif
+                    @endauth
                 </div>
             </div>
         </div>
@@ -68,7 +68,9 @@
                             </div>
                             <div class="content">
                                 <div class="summary">
-                                    <a href="{{ $tweet->is_retweet ? url($tweet->retweet->user->username) : url($tweet->user->username)}}">
+                                    <a class="user-popup"
+                                       data-html="{{ $tweet->is_retweet ? $tweet->retweet->user->profil_widget : $tweet->user->profil_widget }}"
+                                       href="{{ $tweet->is_retweet ? url($tweet->retweet->user->username) : url($tweet->user->username)}}">
                                         {{ $tweet->is_retweet ? $tweet->retweet->user->surname : $tweet->user->surname}}</a>
                                     {{ $tweet->is_retweet ? '@' . $tweet->retweet->user->username : '@' . $tweet->user->username}}
                                     <div class="date">
