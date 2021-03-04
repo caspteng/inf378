@@ -131,7 +131,7 @@ class User extends Authenticatable
 
     public function liking()
     {
-        return $this->belongsToMany(User::class, 'likes', 'user_id', 'tweet_id');
+        return $this->belongsToMany(Tweet::class, 'likes', 'user_id', 'tweet_id');
     }
 
     /**
