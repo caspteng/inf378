@@ -4,10 +4,12 @@
         <div class="four wide column">
             <div class="ui cards">
                 <div class="card">
-                    <div class="image">
+                    <a class="dimmable image">
+                        <div class="ui dimmer display-avatar">
+                        </div>
                         <img alt="{{ $user->surname }}"
                              src="{{ $user->avatar }}">
-                    </div>
+                    </a>
                     <div class="content">
                         <div class="header">{{ $user->surname }}</div>
                         <div class="meta">
@@ -55,4 +57,5 @@
         <x-modal-tweet-remove/>
     </div>
     @include('_edit-profil')
+    @include('_modal-avatar')
 @stop
