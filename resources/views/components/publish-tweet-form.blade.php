@@ -7,9 +7,10 @@
         </div>
         @if ($errors->has('message'))
             <div class="ui pointing red basic label">
-                    {{ $errors->first()  }}
+                {{ $errors->first()  }}
             </div>
         @endif
-            <button class="ui right floated twitter button" type="submit">Tweeter</button>
-        </div>
+        <button class="ui right floated twitter button" type="submit">Tweeter</button>
+    </div>
 </form>
+
