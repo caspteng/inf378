@@ -17,7 +17,8 @@ class TweetController extends Controller
     {
         $user = User::find(auth()->user()->id);
         return view('home')
-            ->with('user', $user);
+            ->with('user', $user)
+            ->with('page_title', 'Accueil');
     }
 
     public function getAllTweet()
