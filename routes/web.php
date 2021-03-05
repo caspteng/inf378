@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ExploreController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TweetController;
 use App\Http\Controllers\UserController;
@@ -48,15 +49,6 @@ Route::get('/retweet/{tweet_id}', [TweetController::class, 'retweet'])
     ->name('retweet');
 
 
-### PROFIL PAGE ###
-
-Route::patch('/{user:username}', [ProfileController::class, 'update'])
-    ->name('profile')
-    ->middleware('auth');
-Route::get('/{user:username}', [ProfileController::class, 'show'])
-    ->name('profile');
-
-
 ### FOLLOWING SYSTEM ###
 
 Route::get('/follow/{id}', [UserController::class, 'follow'])
@@ -69,3 +61,17 @@ Route::get('/unfollow/{id}', [UserController::class, 'unfollow'])
 Route::get('/like/{id}', [TweetController::class, 'likeOrUnlike'])
     ->middleware('auth')
     ->name('like');
+
+### EXPLORE PAGE ###
+Route::get('/explore', [ExploreController::class, 'show'])
+    ->middleware('auth')
+    ->name('explore');
+
+
+### PROFIL PAGE ###
+
+Route::patch('/{user:username}', [ProfileController::class, 'update'])
+    ->name('profile')
+    ->middleware('auth');
+Route::get('/{user:username}', [ProfileController::class, 'show'])
+    ->name('profile');

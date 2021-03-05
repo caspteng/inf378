@@ -7,7 +7,7 @@
         <i class="home big icon"></i>
         Home
     </a>
-    <a class="item" href="{{ url('tweet') }}">
+    <a class="item" href="{{ route('explore') }}">
         <i class="hashtag big icon"></i>
         Explorer
     </a>
