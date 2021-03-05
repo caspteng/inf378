@@ -21,6 +21,8 @@ class User extends Authenticatable
     protected $fillable = [
         'username',
         'surname',
+        'biography',
+        'avatar_picture',
         'email',
         'password',
         'birthday',
@@ -162,6 +164,12 @@ class User extends Authenticatable
     public function isLiking(Tweet $tweet): bool
     {
         return !is_null($this->liking()->where('tweet_id', $tweet->id)->first());
+    }
+
+    public function path($append = '')
+    {
+        $path = route('profile', $this->username);
+        return $append ? "{$path}/{$append}" : $path;
     }
 
 }

@@ -21,19 +21,20 @@
                     </div>
                     <div class="extra content">
                           <span class="right floated">
-                            Joined in {{ $user->created_at->format('Y') }}
+                              <i class="calendar alternate icon"></i>
+                            À rejoint en {{ $user->created_at->format('Y') }}
                           </span>
                         <span>
                             <i class="user icon"></i>
-                            {{ $user->count_follower }} followers
+                            {{ $user->count_follower }} abonnés
                           </span>
                     </div>
 
                     @auth
                         @if ($is_profile_owner)
                             <a class="ui bottom attached button edit_profil">
-                                <i class="user icon"></i>
-                                Edit Profil
+                                <i class="edit icon"></i>
+                                Editer le profil
                             </a>
                         @else
                             <div class="ui {{ $is_follow ? '' : 'primary' }} follow button"

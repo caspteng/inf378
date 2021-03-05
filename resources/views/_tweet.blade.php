@@ -16,7 +16,7 @@
             <div class="summary">
                 <a class="user-popup"
                    data-html="{{ $tweet->is_retweet ? $tweet->retweet->user->profil_widget : $tweet->user->profil_widget }}"
-                   href="{{ $tweet->is_retweet ? url($tweet->retweet->user->username) : url($tweet->user->username)}}">
+                   href="{{ $tweet->is_retweet ? route('profile', $tweet->retweet->user) : route('profile', $tweet->user)}}">
                     {{ $tweet->is_retweet ? $tweet->retweet->user->surname : $tweet->user->surname}}</a>
                 {{ $tweet->is_retweet ? '@' . $tweet->retweet->user->username : '@' . $tweet->user->username}}
                 <div class="date">

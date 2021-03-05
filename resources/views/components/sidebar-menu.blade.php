@@ -11,10 +11,12 @@
         <i class="hashtag big icon"></i>
         Explorer
     </a>
-    <a class="item" href="{{ route('profile') }}">
+    @auth
+    <a class="item" href="{{ route('profile', auth()->user()) }}">
         <i class="user big icon"></i>
         Profil
     </a>
+    @endauth
     <a class="item" href="#">
         <i class="envelope big icon"></i>
         Messages

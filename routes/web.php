@@ -22,8 +22,7 @@ Route::get('/', function () {
     ->middleware('guest');
 
 ### HOME (TIMELINE) ###
-// TODO: Adding Timeline
-Route::get('/home',[TweetController::class, 'index'])
+Route::get('/home', [TweetController::class, 'index'])
     ->middleware('auth')
     ->name('home');
 
@@ -50,10 +49,12 @@ Route::get('/retweet/{tweet_id}', [TweetController::class, 'retweet'])
 
 
 ### PROFIL PAGE ###
-Route::get('/profile', function () {
-    return redirect('/' . auth()->user()->username);
-})->middleware('auth')->name('profile');
-Route::get('/{username}', [ProfileController::class, 'show']);
+
+Route::patch('/{user:username}', [ProfileController::class, 'update'])
+    ->name('profile')
+    ->middleware('auth');
+Route::get('/{user:username}', [ProfileController::class, 'show'])
+    ->name('profile');
 
 
 ### FOLLOWING SYSTEM ###
