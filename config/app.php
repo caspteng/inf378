@@ -166,6 +166,8 @@ return [
          * Package Service Providers...
          */
 
+        Intervention\Image\ImageServiceProvider::class,
+
         /*
          * Application Service Providers...
          */
@@ -230,6 +232,7 @@ return [
         'TweetUser' => App\Helpers\User::class,
         'TweetValidation' => App\Helpers\Validation::class,
         'TweetHash' => App\Helpers\Hash::class,
+        'Image' => Intervention\Image\Facades\Image::class,
 
     ],
 
