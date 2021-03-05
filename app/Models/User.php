@@ -49,9 +49,12 @@ class User extends Authenticatable
 
     public function getAvatarAttribute()
     {
-        return $this->avatar_picture ??
-            '//eu.ui-avatars.com/api/?size=290&&color=ffffff&background=555b6e&name='
-            . $this->surname . '&format=svg';
+        if (isset($this->avatar_picture)) {
+            return asset('/storage/' . $this->avatar_picture);
+        } else {
+            return '//eu.ui-avatars.com/api/?size=290&&color=ffffff&background=555b6e&name='
+                . $this->surname . '&format=svg';
+        }
     }
 
     public function getProfilWidgetAttribute()

@@ -1,4 +1,4 @@
-<form class="ui edit modal" method="POST" action="{{ $user->path() }}">
+<form class="ui edit modal" method="POST" action="{{ $user->path() }}" enctype="multipart/form-data">
     @csrf
     @method('PATCH')
 
@@ -8,11 +8,12 @@
         </button>
     </div>
     <div class="scrolling content">
-        <div class="dimmable ui centered small circular image edit_picture">
-            <a href="#" class="ui dimmer">
+        <div class="dimmable ui centered small circular image avatar-upload">
+            <label for="avatar_picture" href="#" class="ui dimmer avatar-upload">
                 <i class="camera inverted big retro icon"></i>
-            </a>
-            <img src="{{ $user->avatar }}" alt="">
+            </label>
+            <img id="avatar-preview" src="{{ $user->avatar }}" alt="">
+            <input name="avatar_picture" id="avatar_picture" type="file" style="display: none" accept="image/*"/>
         </div>
         <div class="ui form">
             <div class="field">
@@ -37,7 +38,23 @@
         }
     );
 
-    $('.ui.circular.image.edit_picture').dimmer({
+    $('.ui.circular.image.avatar-upload').dimmer({
         on: 'hover'
+    });
+
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            const reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#avatar-preview').attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $("#avatar_picture").change(function () {
+        readURL(this);
     });
 </script>

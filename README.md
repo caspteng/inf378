@@ -28,6 +28,10 @@ Database Migrations (config the .env file before)
 php artisan db:create
 php artisan migrate
 ```
+Create storage link for avatar picture
+```shell
+php artisan storage:link
+```
 
 Launch web application in localhost
 ```shell

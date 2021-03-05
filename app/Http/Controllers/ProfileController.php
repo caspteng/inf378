@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Intervention\Image\Facades\Image;
 
 class ProfileController extends Controller
 {
@@ -28,8 +29,14 @@ class ProfileController extends Controller
     {
         $attribute = request()->validate([
             'surname' => 'required|string|max:50|min:3',
-            'biography' => 'max:160'
+            'biography' => 'max:160',
+            'avatar_picture' => 'image|mimes:jpeg,png,jpg,gif|max:2048'
         ]);
+
+        if (request()->hasFile('avatar_picture')) {
+            $attribute['avatar_picture'] = request('avatar_picture')->store('avatars');
+            Image::make('storage/' . $attribute['avatar_picture'])->fit(500)->encode('jpg', 100)->save();
+        }
 
         $user->update($attribute);
         return redirect($user->path())

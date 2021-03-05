@@ -11,3 +11,7 @@
 .ui.feed > .event > .content .meta .active.retweet i.icon {
     color:#7bf1a8
 }
+
+.avatar-upload {
+    cursor: pointer;
+}
