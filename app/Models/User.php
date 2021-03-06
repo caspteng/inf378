@@ -83,6 +83,14 @@ class User extends Authenticatable
         return $this->hasMany(Tweet::class);
     }
 
+    public function sent()
+    {
+        return $this->hasMany(Message::class, 'sender_id');
+    }
+    public function received()
+    {
+        return $this->hasMany(Message::class, 'receiver_id');
+    }
     /**
      * Retrieves list of user's tweets
      *
@@ -181,6 +189,14 @@ class User extends Authenticatable
     {
         $path = route('profile', $this->username);
         return $append ? "{$path}/{$append}" : $path;
+    }
+
+    public function sendMessageTo($receiver, $message)
+    {
+        return $this->sent()->create([
+            'message' => $message,
+            'receiver_id' => $receiver
+        ]);
     }
 
 }

@@ -3,7 +3,7 @@
     <div class="ui grid">
         <div class="four wide column">
             <div class="ui cards">
-                <div class="card">
+                <div class="ui fluid card">
                     <a class="dimmable image">
                         <div class="ui dimmer display-avatar">
                         </div>
@@ -42,6 +42,9 @@
                                 <i class="user {{ $is_follow ? 'plus' : 'minus' }} icon"></i>
                                 {{ $is_follow ? 'Suivre' : 'Se désabonné' }}
                             </div>
+                                <a href="{{ route('messages', $user->id) }}" class="ui button">
+                                    <i class="envelope icon"></i>
+                                    Envoyer un message</a>
                         @endif
                     @endauth
                 </div>

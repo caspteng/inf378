@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AccountSettingsController;
 use App\Http\Controllers\ExploreController;
+use App\Http\Controllers\MessageController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TweetController;
 use App\Http\Controllers\UserController;
@@ -75,6 +76,13 @@ Route::get('/settings', [AccountSettingsController::class, 'show'])
 Route::patch('/settings', [AccountSettingsController::class, 'update'])
     ->middleware('auth');
 
+### PRIVATE MESSAGES PAGE ###
+
+Route::get('/messages/{user:id}', [MessageController::class, 'show'])
+    ->middleware('auth')
+    ->name('messages');
+Route::post('/messages/{user:id}', [MessageController::class, 'store'])
+    ->middleware('auth');
 
 ### PROFIL PAGE ###
 
