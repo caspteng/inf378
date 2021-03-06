@@ -9,7 +9,7 @@
         <div class="eleven wide column">
 
             <br/>
-            @include('_timeline', ['tweets' => $latest_tweets])
+            @include('includes.timeline', ['tweets' => $latest_tweets])
         </div>
     </div>
     <x-modal-tweet-remove/>

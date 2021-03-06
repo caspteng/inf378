@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AccountSettingsController;
 use App\Http\Controllers\ExploreController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TweetController;
@@ -32,11 +33,10 @@ require __DIR__ . '/auth.php';
 
 ### TWEET ###
 
-Route::get('/tweet', [TweetController::class, 'getAllTweet']);
 Route::post('/tweet/create', [TweetController::class, 'store'])
     ->middleware('auth')
     ->name('create_tweet');
-Route::get('/tweet/{id}/destroy', [TweetController::class, 'drop'])
+Route::get('/tweet/{tweet:id}/destroy', [TweetController::class, 'drop'])
     ->middleware('auth')
     ->name('destroy_tweet');
 
@@ -51,14 +51,14 @@ Route::get('/retweet/{tweet_id}', [TweetController::class, 'retweet'])
 
 ### FOLLOWING SYSTEM ###
 
-Route::get('/follow/{id}', [UserController::class, 'follow'])
+Route::get('/follow/{user:id}', [UserController::class, 'follow'])
     ->middleware('auth');
-Route::get('/unfollow/{id}', [UserController::class, 'unfollow'])
+Route::get('/unfollow/{user:id}', [UserController::class, 'unfollow'])
     ->middleware('auth');
 
 ### LIKE SYSTEM ###
 
-Route::get('/like/{id}', [TweetController::class, 'likeOrUnlike'])
+Route::get('/like/{tweet:id}', [TweetController::class, 'likeOrUnlike'])
     ->middleware('auth')
     ->name('like');
 
@@ -67,11 +67,18 @@ Route::get('/explore', [ExploreController::class, 'show'])
     ->middleware('auth')
     ->name('explore');
 
+### SETTINGS PAGE ###
+
+Route::get('/settings', [AccountSettingsController::class, 'show'])
+    ->middleware('auth')
+    ->name('settings');
+Route::patch('/settings', [AccountSettingsController::class, 'update'])
+    ->middleware('auth');
+
 
 ### PROFIL PAGE ###
 
 Route::patch('/{user:username}', [ProfileController::class, 'update'])
-    ->name('profile')
     ->middleware('auth');
 Route::get('/{user:username}', [ProfileController::class, 'show'])
     ->name('profile');

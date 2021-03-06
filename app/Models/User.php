@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Helpers\Hash;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -54,6 +55,13 @@ class User extends Authenticatable
         } else {
             return '//eu.ui-avatars.com/api/?size=290&&color=ffffff&background=555b6e&name='
                 . $this->surname . '&format=svg';
+        }
+    }
+
+    public function setPasswordAttribute($value)
+    {
+        if (!empty($value)) {
+            $this->attributes['password'] = Hash::make($value);
         }
     }
 

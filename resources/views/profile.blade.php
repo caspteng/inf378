@@ -52,11 +52,11 @@
                 <x-publish-tweet-form/>
             @endif
             <br/>
-            @include('_timeline', ['tweets' => $user->timeline()])
+            @include('includes.timeline', ['tweets' => $user->timeline()])
         </div>
         <x-right-content/>
         <x-modal-tweet-remove/>
     </div>
-    @include('_edit-profil')
-    @include('_modal-avatar')
+    @include('includes.edit-profil')
+    @include('includes.modal-avatar')
 @stop

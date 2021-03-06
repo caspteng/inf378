@@ -9,7 +9,7 @@
         <div class="eleven wide column">
             <x-publish-tweet-form/>
             <br/>
-            @include('_timeline', ['tweets' => $user->feed()])
+            @include('includes.timeline', ['tweets' => $user->feed()])
         </div>
     </div>
     <x-modal-tweet-remove/>

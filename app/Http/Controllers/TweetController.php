@@ -21,12 +21,6 @@ class TweetController extends Controller
             ->with('page_title', 'Accueil');
     }
 
-    public function getAllTweet()
-    {
-        $getTweet = Tweet::latest()->get();
-        return view('tweet.all')
-            ->with('allTweets', $getTweet);
-    }
 
     public function store(Request $request)
     {

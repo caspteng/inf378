@@ -3,6 +3,7 @@
         $(document).ready(function () {
             $('body')
                 .toast({
+                    displayTime: 5000,
                     class: '{{ session('flash.class') }}',
                     message: `{{ session('flash.message') }}`
                 })
@@ -17,6 +18,9 @@
         $(document).ready(function () {
             $('body')
                 .toast({
+                    title: 'Erreur',
+                    displayTime: 11000,
+                    showProgress: 'top',
                     class: 'error',
                     message: `{{ $message }}`
                 })

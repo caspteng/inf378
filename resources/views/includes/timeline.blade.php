@@ -1,6 +1,6 @@
 <div class="scrolling-pagination">
     @forelse($tweets as $tweet)
-        @include('_tweet')
+        @include('includes.tweet')
     @empty
         <div class="ui large feed raised segment">
             <div class="ui active inverted dimmer">

@@ -12,22 +12,24 @@
         Explorer
     </a>
     @auth
-    <a class="item" href="{{ route('profile', auth()->user()) }}">
-        <i class="user big icon"></i>
-        Profil
-    </a>
-    @endauth
-    <a class="item" href="#">
-        <i class="envelope big icon"></i>
-        Messages
-    </a>
-    @auth
+        <a class="item" href="{{ route('profile', auth()->user()) }}">
+            <i class="user big icon"></i>
+            Profil
+        </a>
+        <a class="item" href="#">
+            <i class="envelope big icon"></i>
+            Messages
+        </a>
+        <a class="item" href="{{ route('settings') }}">
+            <i class="cog big icon"></i>
+            Paramètres
+        </a>
         <form id="tw-logout" action="{{ route('logout') }}" method="POST" style="display: none;">
             @csrf
         </form>
         <a class="item" href="#" onclick="document.getElementById('tw-logout').submit();">
-            <i class="cog big icon"></i>
-            Réglages (Déconnexion)
+            <i class="power off big icon"></i>
+            Déconnexion
         </a>
     @endauth
 </div>
