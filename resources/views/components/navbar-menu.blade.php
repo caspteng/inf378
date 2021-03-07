@@ -2,7 +2,8 @@
 
     <div class="computer only row">
         <div class="ui top blue inverted fixed menu">
-            <a class="active item" href="{{ route('home') }}"><i class="twitter big icon"></i> Twitter</a>
+            <a class="active item" href="{{ route('home') }}"><i class="twitter big icon"></i>{{ config('app.name') }}
+            </a>
             <a class="item" href="{{ route('home') }}"><i class="home big icon"></i> Home</a>
             <a class="item" href="{{ route('explore') }}"><i class="hashtag big icon"></i> Explorer</a>
             @auth
@@ -25,7 +26,8 @@
         <div class="column">
             <div class="ui top blue inverted fixed menu">
                 <a id="mobile_item" class="item"><i class="bars big icon"></i></a>
-                <a class="active item" href="{{ route('home') }}"><i class="twitter big icon"></i> Twitter</a>
+                <a class="active item" href="{{ route('home') }}"><i
+                        class="twitter big icon"></i>{{ config('app.name') }}</a>
                 <div class="right menu">
                     <div class="item">
                         <div class="ui icon input">
