@@ -1,3 +1,5 @@
 <div class="three wide column">
-    @include('includes.following-list')
+    @auth
+        @include('includes.following-list')
+    @endauth
 </div>

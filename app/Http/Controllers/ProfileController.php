@@ -25,6 +25,30 @@ class ProfileController extends Controller
             ->with('page_title', "$user->surname (@$user->username)");
     }
 
+    public function showFollowing(User $user)
+    {
+        $is_owner = false;
+        if (Auth::check()) {
+            $is_owner = auth()->user()->id == $user->id;
+        }
+        $followings = $user->following()->latest()->paginate(50);
+        return view('profile.following', compact('followings',
+            'is_owner', 'user'))
+            ->with('page_title', 'Personnes suivies par ' . $user->surname);
+    }
+
+    public function showFollowers(User $user)
+    {
+        $is_owner = false;
+        if (Auth::check()) {
+            $is_owner = auth()->user()->id == $user->id;
+        }
+        $followers = $user->follower()->latest()->paginate(50);
+        return view('profile.followers', compact('followers',
+            'is_owner', 'user'))
+            ->with('page_title', 'Personnes qui suivent ' . $user->surname);
+    }
+
     public function update(User $user)
     {
         $attribute = request()->validate([

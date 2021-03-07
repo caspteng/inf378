@@ -52,10 +52,11 @@ Route::get('/retweet/{tweet_id}', [TweetController::class, 'retweet'])
 
 ### FOLLOWING SYSTEM ###
 
-Route::get('/follow/{user:id}', [UserController::class, 'follow'])
-    ->middleware('auth');
-Route::get('/unfollow/{user:id}', [UserController::class, 'unfollow'])
-    ->middleware('auth');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/follow/{user:id}', [UserController::class, 'follow']);
+    Route::get('/unfollow/{user:id}', [UserController::class, 'unfollow']);
+});
 
 ### LIKE SYSTEM ###
 
@@ -90,3 +91,8 @@ Route::patch('/{user:username}', [ProfileController::class, 'update'])
     ->middleware('auth');
 Route::get('/{user:username}', [ProfileController::class, 'show'])
     ->name('profile');
+Route::get('/{user:username}/following', [ProfileController::class, 'showFollowing'])
+    ->name('following');
+Route::get('/{user:username}/followers', [ProfileController::class, 'showFollowers'])
+    ->name('followers');
+

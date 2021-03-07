@@ -33,7 +33,7 @@
                           </span>
                         <span>
                             <i class="user icon"></i>
-                            {{ $user->count_follower }} abonnés
+                            <a href="{{ route('followers', $user->username) }}"> {{ $user->count_follower }} abonnés</a>
                           </span>
                     </div>
 
