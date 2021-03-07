@@ -25,7 +25,11 @@
                 </div>
             </div>
             <div class="extra text">
-                {{ $tweet->is_retweet ? $tweet->retweet->message : $tweet->message }}
+                <p>{{ $tweet->is_retweet ? $tweet->retweet->message : $tweet->message }}</p>
+                @if ($tweet->hasImage() || $tweet->retweet && $tweet->retweet->hasImage())
+                    <img class="ui rounded centered massive image"
+                         src="{{ $tweet->is_retweet ? $tweet->retweet->image : $tweet->image }}" alt="">
+                @endif
             </div>
             <div class="meta">
                 <a href="{{ route('like', $tweet->is_retweet ? $tweet->retweet_id : $tweet->id) }}"

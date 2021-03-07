@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Tweet;
+use App\Models\TweetsImage;
 use App\Models\User;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Http\Client\RequestException;
 use Illuminate\Support\Facades\Auth;
+use Intervention\Image\Facades\Image;
 
 
 class TweetController extends Controller
@@ -25,13 +27,23 @@ class TweetController extends Controller
     public function store(Request $request)
     {
         $attribute = $request->validate([
-            'message' => 'required|string|max:140|min:10'
+            'message' => 'required|string|max:140|min:10',
+            'avatar_picture' => 'image|mimes:jpeg,png,jpg,gif|max:2048'
         ]);
 
-        Tweet::create([
+        $tweet = Tweet::create([
             'message' => $attribute['message'],
             'user_id' => auth()->user()->id,
         ]);
+
+        if (request()->hasFile('img_path')) {
+            $attribute['img_path'] = request('img_path')->store('images');
+            Image::make('storage/' . $attribute['img_path'])->encode('jpg', 100)->save();
+            TweetsImage::create([
+                'tweet_id' => $tweet->id,
+                'img_path' => $attribute['img_path']
+            ]);
+        }
 
         return redirect()->back()
             ->with('flash.message', 'Le tweet a été publié')

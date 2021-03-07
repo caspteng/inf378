@@ -27,12 +27,32 @@ class Tweet extends Model
 
     protected $dates = ['deleted_at'];
 
-    public function user() {
+    public function user()
+    {
         return $this->belongsTo(User::class)->withDefault();
     }
 
-    public function retweet() {
+    public function retweet()
+    {
         return $this->BelongsTo(Tweet::class, 'retweet_id');
+    }
+
+    public function images()
+    {
+        return $this->hasOne(TweetsImage::class);
+    }
+
+    public function hasImage()
+    {
+        return !is_null($this->images()->first());
+    }
+
+    public function getImageAttribute()
+    {
+        if (isset($this->images->img_path)) {
+            return asset('/storage/' . $this->images->img_path);
+        }
+        return null;
     }
 
     /**
