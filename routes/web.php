@@ -66,7 +66,6 @@ Route::get('/like/{tweet:id}', [TweetController::class, 'likeOrUnlike'])
 
 ### EXPLORE PAGE ###
 Route::get('/explore', [ExploreController::class, 'show'])
-    ->middleware('auth')
     ->name('explore');
 
 ### SETTINGS PAGE ###
