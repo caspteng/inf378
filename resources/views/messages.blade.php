@@ -3,6 +3,7 @@
 
     <div class="ui attached message">
         <div class="header">
+            <img class="ui avatar image" src="{{ $user->avatar }}">
             {{ $user->surname }}
         </div>
         <p>{{ TweetUser::getUsername($user->id) }}</p>

@@ -7,7 +7,7 @@
         </div>
 
         <div class="eleven wide column">
-
+            <h2 class="ui header blue">Quoi de neuf en ce moment ?</h2>
             <br/>
             @include('includes.timeline', ['tweets' => $latest_tweets])
         </div>

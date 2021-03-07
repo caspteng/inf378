@@ -7,6 +7,7 @@
         </div>
 
         <div class="eleven wide column">
+            <h2 class="ui header blue">Accueil</h2>
             <x-publish-tweet-form/>
             <br/>
             @include('includes.timeline', ['tweets' => $user->feed()])

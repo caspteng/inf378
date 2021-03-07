@@ -18,7 +18,7 @@
 
 </head>
 <body>
-<x-sidebar-menu/>
+<x-navbar-menu/>
     <div class="ui container" id="content">
     @yield('content')
     </div>

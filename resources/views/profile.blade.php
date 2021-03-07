@@ -2,6 +2,13 @@
 @section('content')
     <div class="ui grid">
         <div class="four wide column">
+            @auth
+                @if (!$is_profile_owner)
+                    <a href="{{ route('messages', $user->id) }}" class="ui fluid basic button">
+                        <i class="envelope icon"></i>
+                        Envoyer un message</a><br>
+                @endif
+            @endauth
             <div class="ui cards">
                 <div class="ui fluid card">
                     <a class="dimmable image">
@@ -42,15 +49,13 @@
                                 <i class="user {{ $is_follow ? 'plus' : 'minus' }} icon"></i>
                                 {{ $is_follow ? 'Suivre' : 'Se désabonné' }}
                             </div>
-                                <a href="{{ route('messages', $user->id) }}" class="ui button">
-                                    <i class="envelope icon"></i>
-                                    Envoyer un message</a>
                         @endif
                     @endauth
                 </div>
             </div>
         </div>
         <div class="nine wide column">
+            <h2 class="ui header blue">{{ $is_profile_owner ? 'Ton profil' : 'Profil de ' . $user->surname }}</h2>
             @if ($is_profile_owner)
                 <x-publish-tweet-form/>
             @endif
