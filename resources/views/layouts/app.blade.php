@@ -15,12 +15,13 @@
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('assets/semantic/semantic.min.js') }}"></script>
     <script src="{{ asset('js/api.js') }}"></script>
+
 </head>
 <body>
 <x-sidebar-menu/>
-<div class="ui container">
+    <div class="ui container" id="content">
     @yield('content')
-</div>
-<x-flash-message/>
+    </div>
+    <x-flash-message/>
 </body>
 </html>

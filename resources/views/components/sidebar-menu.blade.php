@@ -1,35 +1,51 @@
-<!-- Sidebar Menu -->
-<div class="ui grey vertical inverted left sidebar visible icon menu" style="width: 8%">
-    <a class="active blue item" href="#" style="padding-top: 2em; padding-bottom: 2em;">
-        <i class="twitter huge icon"></i>
-    </a>
-    <a class="item" href="{{ route('home') }}">
-        <i class="home big icon"></i>
-        Home
-    </a>
-    <a class="item" href="{{ route('explore') }}">
-        <i class="hashtag big icon"></i>
-        Explorer
-    </a>
-    @auth
-        <a class="item" href="{{ route('profile', auth()->user()) }}">
-            <i class="user big icon"></i>
-            Profil
-        </a>
-        <a class="item" href="#">
-            <i class="envelope big icon"></i>
-            Messages
-        </a>
-        <a class="item" href="{{ route('settings') }}">
-            <i class="cog big icon"></i>
-            Paramètres
-        </a>
-        <form id="tw-logout" action="{{ route('logout') }}" method="POST" style="display: none;">
-            @csrf
-        </form>
-        <a class="item" href="#" onclick="document.getElementById('tw-logout').submit();">
-            <i class="power off big icon"></i>
-            Déconnexion
-        </a>
-    @endauth
+<div class="ui center aligned grid">
+	
+	<div class="computer only row">
+			<div class="ui top blue inverted fixed menu">
+        <a class="active item" href="{{ route('home') }}"><i class="twitter big icon"></i> Twitter</a>
+        <a class="item" href="{{ route('home') }}"><i class="home big icon"></i> Home</a>
+        <a class="item" href="{{ route('explore') }}"><i class="hashtag big icon"></i> Explorer</a>
+        <a class="item" href="{{ route('profile', auth()->user()) }}"><i class="user big icon"></i> Profil</a>
+        <a class="item" href="{{ route('settings') }}"><i class="cog big icon"></i> Paramètres</a>
+        <div class="right menu">
+          <div class="item">
+            <div class="ui icon input">
+              <input type="text" placeholder="Rechercher..."><i class="search link icon"></i>
+            </div>
+          </div>
+        </div>
+        <a class="item" href="#" onclick="document.getElementById('tw-logout').submit();"><i class="power off big icon"></i> Déconnexion</a>
+			</div>
+    </div>
+    
+    <div class="tablet mobile only row">
+		<div class="column">
+			<div class="ui top blue inverted fixed menu">
+				<a id="mobile_item" class="item"><i class="bars big icon"></i></a>
+        <a class="active item" href="{{ route('home') }}"><i class="twitter big icon"></i> Twitter</a>
+        <div class="right menu">
+          <div class="item">
+            <div class="ui icon input">
+              <input type="text" placeholder="Rechercher..."><i class="search link icon"></i>
+            </div>
+          </div>
+        </div>
+			</div>
+		</div>
+	</div>
+
 </div>
+
+    <div class="ui pushable sidebar vertical icon menu blue inverted">
+  <a class="item" href="{{ route('home') }}"><i class="home big icon"></i> Home</a>
+  <a class="item" href="{{ route('explore') }}"><i class="hashtag big icon"></i> Explorer</a>
+  <a class="item" href="{{ route('profile', auth()->user()) }}"><i class="user big icon"></i> Profil</a>
+  <a class="item" href="{{ route('settings') }}"><i class="cog big icon"></i> Paramètres</a>
+  <a class="item" href="#" onclick="document.getElementById('tw-logout').submit();"><i class="power off big icon"></i> Déconnexion</a>
+    </div>
+
+    <script>
+      $('#mobile_item').click(function(){
+          $('.ui.sidebar').sidebar('toggle', 'attach events');
+      })
+      </script>

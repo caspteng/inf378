@@ -2,11 +2,11 @@
 @section('content')
 
     <div class="ui grid">
-        <div class="four wide column">
+        <div class="two wide column">
 
         </div>
 
-        <div class="nine wide column">
+        <div class="eleven wide column">
             <div class="ui attached message">
                 <div class="ui header"> Paramètre de compte</div>
             </div>
