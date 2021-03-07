@@ -1,0 +1,27 @@
+.ui.feed > .event > .content .meta .like {
+    color: '';
+    -webkit-transition: .2s color ease;
+    transition:.2s color ease
+}
+
+.ui.feed > .event > .content .meta .retweet:hover i.icon {
+    color: #7bf1a8
+}
+
+.ui.feed > .event > .content .meta .active.retweet i.icon {
+    color:#7bf1a8
+}
+
+.avatar-upload {
+    cursor: pointer;
+}
+
+#avatar-preview {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+}
+
+#content{
+    padding-top: 80px;
+}

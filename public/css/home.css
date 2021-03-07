@@ -1,0 +1,60 @@
+html,
+body {
+    height: 100%;
+}
+
+.maincontainer {
+    height: 100%;
+}
+
+.wrapper {
+    height: 100%;
+}
+
+.ui.grid {
+    min-height: calc(100vh - 20px);
+}
+
+.item {
+    vertical-align: middle;
+    font-size: x-large;
+    padding-bottom: 2rem;
+}
+
+.large.search.icon {
+    margin-left: 1.2em;
+}
+
+.large.heart.icon {
+    margin-left: 0.2em;
+}
+
+.ui.primary.button {
+    margin-top: 3.5rem;
+}
+
+.medium.text {
+    font-size: 2rem;
+}
+
+.left-content {
+    margin: 50vh auto 0;
+    transform: translateY(-50%);
+}
+
+.right-content {
+    width: 70%;
+    margin: 50vh auto 0;
+    transform: translateY(-50%);
+}
+
+.right-content h1 {
+    line-height: 60px;
+    font-size: 5rem;
+}
+
+.blue.column.tweet {
+    background-size: 730px;
+    background: #1da1f2 url(../assets/images/bird.svg) no-repeat center;
+    display: flex;
+}

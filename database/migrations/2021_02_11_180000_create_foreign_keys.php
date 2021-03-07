@@ -17,54 +17,78 @@ class CreateForeignKeys extends Migration
             $table->foreign('user_id')
                 ->references('id')
                 ->on('users')
-                ->cascadeOnDelete();
+                ->onDelete('cascade');
 
             $table->foreign('user_id_retweet')
                 ->references('id')
-                ->on('users')
-                ->cascadeOnDelete();
+                ->on('users');
 
             $table->foreign('retweet_id')
                 ->references('id')
                 ->on('tweets')
-                ->cascadeOnDelete();
+                ->onDelete('cascade');
         });
 
         Schema::table('messages', function (Blueprint $table) {
             $table->foreign('receiver_id')
                 ->references('id')
-                ->on('users')
-                ->cascadeOnDelete();
+                ->on('users');
 
             $table->foreign('sender_id')
                 ->references('id')
-                ->on('users')
-                ->cascadeOnDelete();
+                ->on('users');
         });
 
         Schema::table('likes', function (Blueprint $table) {
             $table->foreign('tweet_id')
                 ->references('id')
                 ->on('tweets')
-                ->cascadeOnDelete();
+                ->onDelete('cascade');
 
             $table->foreign('user_id')
                 ->references('id')
                 ->on('users')
-                ->cascadeOnDelete();
+                ->onDelete('cascade');
         });
 
         Schema::table('follows', function (Blueprint $table) {
             $table->foreign('user_followed')
                 ->references('id')
                 ->on('users')
-                ->cascadeOnDelete();
+                ->onDelete('cascade');
 
             $table->foreign('user_as_follow')
                 ->references('id')
                 ->on('users')
-                ->cascadeOnDelete();
+                ->onDelete('cascade');
         });
+
+        Schema::table('tweets_images', function (Blueprint $table) {
+            $table->foreign('tweet_id')
+                ->references('id')
+                ->on('tweets')
+                ->onDelete('cascade');
+        });
+
+        Schema::table('tweets_comments', function (Blueprint $table) {
+            $table->foreign('tweet_id')
+                ->references('id')
+                ->on('tweets')
+                ->onDelete('cascade');
+
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade');
+        });
+
+        Schema::table('hashtags', function (Blueprint $table) {
+            $table->foreign('tweet_id')
+                ->references('id')
+                ->on('tweets');
+        });
+
+
     }
 
     /**
@@ -93,6 +117,19 @@ class CreateForeignKeys extends Migration
         Schema::table('follows', function (Blueprint $table) {
             $table->dropForeign('user_as_follow');
             $table->dropForeign('user_followed');
+        });
+
+        Schema::table('tweets_images', function (Blueprint $table) {
+            $table->dropForeign('tweet_id');
+        });
+
+        Schema::table('tweets_comments', function (Blueprint $table) {
+            $table->dropForeign('user_id');
+            $table->dropForeign('tweet_id');
+        });
+
+        Schema::table('hashtags', function (Blueprint $table) {
+            $table->dropForeign('tweet_id');
         });
     }
 }

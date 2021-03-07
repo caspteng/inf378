@@ -114,4 +114,17 @@ return [
 
     'password_timeout' => 10800,
 
+    /*
+    |--------------------------------------------------------------------------
+    | Encryption key
+    |--------------------------------------------------------------------------
+    |
+    | Encrypt key for password
+    |
+    */
+
+    'encrypt_method' => 'ripemd160',
+    'encrypt_key' => 'vive le projet tweet_academy',
+
+
 ];
