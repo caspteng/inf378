@@ -56,7 +56,7 @@ class RegisteredUserController extends Controller
             'surname' => $request->surname,
             'email' => $request->email,
             'birthday' => $request->birthday,
-            'password' => TweetHash::make($request->password),
+            'password' => $request->password,
         ]));
 
         event(new Registered($user));
