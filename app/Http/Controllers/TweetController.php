@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Http\Client\RequestException;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 
 
@@ -26,10 +27,11 @@ class TweetController extends Controller
 
     public function store(Request $request)
     {
+        $characterLimit = config('tweet.characterlimit');
         $attribute = $request->validate([
-            'message' => 'required|string|max:140|min:10',
-            'avatar_picture' => 'image|mimes:jpeg,png,jpg,gif|max:2048'
-        ]);
+            'message' => ['required', 'string', "max:$characterLimit"],
+            'img_path' => 'max:8192|mimes:jpeg,png,gif'
+        ], ['required' => 'Ton tweet ne peut pas être vide']);
 
         $tweet = Tweet::create([
             'message' => $attribute['message'],
@@ -38,7 +40,8 @@ class TweetController extends Controller
 
         if (request()->hasFile('img_path')) {
             $attribute['img_path'] = request('img_path')->store('images');
-            Image::make('storage/' . $attribute['img_path'])->encode('jpg', 100)->save();
+            // TODO: Adding custom encode for GIF
+            // Image::make('storage/' . $attribute['img_path'])->encode('', 100)->save();
             TweetsImage::create([
                 'tweet_id' => $tweet->id,
                 'img_path' => $attribute['img_path']
@@ -71,6 +74,7 @@ class TweetController extends Controller
             //return response()->json(['error' => 'You don\'t have permission to delete this tweet']);
         }
 
+        Storage::delete($tweet->images->img_path);
         $tweet->delete();
 
         return redirect()->back()
@@ -133,24 +137,24 @@ class TweetController extends Controller
      * Like/Unlike a Tweet
      *
      * @param $tweet_id
-     * @return \Illuminate\Http\RedirectResponse
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\JsonResponse
      */
-    public function likeOrUnlike($tweet_id): \Illuminate\Http\RedirectResponse
+    public function likeOrUnlike($tweet_id)
     {
         $currentUser = User::find(Auth::id());
         try {
             $tweet = Tweet::findOrFail($tweet_id);
         } catch (ModelNotFoundException $exp) {
-            return $this->tweetNotExist();
+            return response()->json(['error' => 'Ce tweet n\'existe pas']);
         }
         if ($currentUser->isLiking($tweet)) {
             $currentUser->liking()->detach($tweet->id);
-            //return response()->json(['success' => 'Tweet unliked']);
-            return redirect()->back();
+            return response()->json(['success' => 'Tweet unliked']);
+            //return redirect()->back();
         } else {
             $currentUser->liking()->attach($tweet->id);
-            //return response()->json(['success' => 'Tweet liked']);
-            return redirect()->back();
+            return response()->json(['success' => 'Tweet liked']);
+            //return redirect()->back();
         }
     }
 

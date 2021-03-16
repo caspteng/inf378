@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 
-    <div class="ui grid">
+    <div class="ui stackable grid">
         <div class="two wide column">
 
         </div>

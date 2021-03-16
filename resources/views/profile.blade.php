@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-    <div class="ui grid">
+    <div class="ui stackable grid">
         <div class="four wide column">
             @auth
                 @if (!$is_profile_owner)

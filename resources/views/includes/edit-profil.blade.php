@@ -9,7 +9,7 @@
     </div>
     <div class="scrolling content">
         <div class="dimmable ui centered small circular image avatar-upload">
-            <label for="avatar_picture" href="#" class="ui dimmer avatar-upload">
+            <label for="avatar_picture" class="ui dimmer avatar-upload">
                 <i class="camera inverted big retro icon"></i>
             </label>
             <img id="avatar-preview" src="{{ $user->avatar }}" alt="">

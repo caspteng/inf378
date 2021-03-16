@@ -1,12 +1,12 @@
 @extends('layouts.auth')
 @section('content')
-    <div class="ui grid" style="padding-top: 10px">
+    <div class="ui stackable grid" style="padding-top: 10px">
         <div class="centered twelve wide column">
             <h3 class="ui header blue">Connecte-toi</h3>
             <form method="POST" action="{{ route('login') }}" class="ui form">
                 @csrf
                 <div class="ui placeholder segment">
-                    <div class="ui two column very relaxed grid">
+                    <div class="ui two column very relaxed stackable grid">
                         <div class="column">
                             <div class="ui form">
                                 <div class="field">

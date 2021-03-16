@@ -1,7 +1,11 @@
 <div class="ui large feed raised segment">
     @if ($tweet->is_retweet)
         <div class="ui top left attached label">
-            <i class="retweet icon"></i> {{ $is_profile_owner ?? $tweet->user->id == $user->id ? 'Vous avez retweeté' : $tweet->user->surname . ' a retweeté'}}
+            @auth
+                <i class="retweet icon"></i> {{ $is_profile_owner ?? $tweet->user->id === $user->id ? 'Vous avez retweeté' : $tweet->user->surname . ' a retweeté'}}
+            @else
+                <i class="retweet icon"></i> {{ $tweet->user->surname . ' a retweeté'}}
+            @endauth
         </div>
     @endif
     <div class="event">
@@ -32,7 +36,9 @@
                 @endif
             </div>
             <div class="meta">
-                <a href="{{ route('like', $tweet->is_retweet ? $tweet->retweet_id : $tweet->id) }}"
+                <!--<i class="comment icon"></i> 0-->
+                <a data-id="{{ $tweet->is_retweet ? $tweet->retweet_id : $tweet->id }}"
+                   data-liking="@auth{{ auth()->user()->isLiking($tweet->is_retweet ? $tweet->retweet : $tweet) ? 'true' : 'false' }}@endauth"
                    class="like @auth {{ auth()->user()->isLiking($tweet->is_retweet ? $tweet->retweet : $tweet) ? 'active' : ''}} @endauth">
                     <i class="like icon"></i>
                     {{ TweetUser::getLikeCount($tweet->is_retweet ? $tweet->retweet_id : $tweet->id) }}
@@ -52,7 +58,7 @@
                 @endif
                 @auth
                     @if ($tweet->user_id == auth()->user()->id && $tweet->is_retweet == false)
-                        <a href="#" class="tw-delete" data-id="{{ $tweet->id }}">
+                        <a class="tw-delete" data-id="{{ $tweet->id }}">
                             <i class="remove icon"></i>
                         </a>
                     @endif

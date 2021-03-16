@@ -1,6 +1,6 @@
 @extends('layouts.auth')
 @section('content')
-    <div class="ui grid" style="padding-top: 10px">
+    <div class="ui stackable grid" style="padding-top: 10px">
         <div class="centered eleven wide column">
             <div class="ui attached message">
                 <div class="header">

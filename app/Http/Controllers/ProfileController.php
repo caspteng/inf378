@@ -54,7 +54,7 @@ class ProfileController extends Controller
         $attribute = request()->validate([
             'surname' => 'required|string|max:50|min:3',
             'biography' => 'max:160',
-            'avatar_picture' => 'image|mimes:jpeg,png,jpg,gif|max:2048'
+            'avatar_picture' => 'max:2048|mimes:jpeg,png'
         ]);
 
         if (request()->hasFile('avatar_picture')) {
