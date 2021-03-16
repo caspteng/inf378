@@ -14,8 +14,12 @@
             @endauth
             <div class="right menu">
                 <div class="item">
-                    <div class="ui icon input">
-                        <input type="text" placeholder="Rechercher..."><i class="search link icon"></i>
+                    <div class="ui search">
+                        <div class="ui icon input">
+                            <i class="search icon"></i>
+                            <input type="text" class="prompt" placeholder="Rechercher...">
+                        </div>
+                        <div class="results"></div>
                     </div>
                 </div>
             </div>

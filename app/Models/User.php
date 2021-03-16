@@ -14,6 +14,7 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable;
 
+    protected $appends = ['avatar'];
     /**
      * The attributes that are mass assignable.
      *
@@ -36,7 +37,12 @@ class User extends Authenticatable
      */
     protected $hidden = [
         'password',
+        'firstname',
+        'lastname',
         'remember_token',
+        'status',
+        'token',
+        'deleted_at'
     ];
 
     /**

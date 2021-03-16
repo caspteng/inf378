@@ -17,14 +17,4 @@ mix.js('resources/js/app.js', 'public/js')
         require('autoprefixer'),
     ]).version()
 
-    /* Adding Semantic UI assets */
-    .copy('node_modules/fomantic-ui/dist/semantic.min.css', 'public/assets/semantic/semantic.min.css')
-    .copy('node_modules/fomantic-ui/dist/semantic.min.js', 'public/assets/semantic/semantic.min.js')
-    .copy('node_modules/fomantic-ui/dist/themes/', 'public/assets/semantic/themes/');
-
-mix.js('resources/js/api.js', 'public/js')
-if (mix.inProduction()) {
-    mix.version();
-}
-
-//mix.sass('resources/sass/app.scss', 'public/css');
+mix.sass('resources/sass/app.scss', 'public/css');

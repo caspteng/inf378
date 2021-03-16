@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AccountSettingsController;
+use App\Http\Controllers\Api\SearchController;
 use App\Http\Controllers\ExploreController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\ProfileController;
@@ -18,6 +19,8 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::get('search/{query}', [SearchController::class, 'index']);
 
 Route::get('/', function () {
     return view('welcome');

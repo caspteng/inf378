@@ -33,3 +33,5 @@ var linkify = require('linkifyjs');
 //var linkifyHtml = require('linkifyjs/html');
 require('linkifyjs/jquery')($, document);
 require('linkifyjs/plugins/mention')(linkify);
+require('fomantic-ui');
+require('./api')

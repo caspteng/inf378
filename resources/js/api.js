@@ -7,14 +7,14 @@ jQuery(document).ready(function () {
         'like tweet': '/like/{id}',
         'retweet': '/retweet/{id}',
         'undo retweet': '/retweet/{id}/undo',
+        'search': '/api/search/{query}'
     };
 
-    $.fn.api.settings.successTest = function (response) {
-        if (response && response.success) {
-            return response.success;
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
-        return false;
-    };
+    });
 
     const TweetAcademy = $('body');
 
@@ -117,6 +117,34 @@ jQuery(document).ready(function () {
     TweetAcademy.on('mouseleave', '.user-popup', function () {
         $(this).popup('hidden')
     });
+
+    $('.ui.search')
+        .search({
+            minCharacters: 3, // just under devel to make it easy
+            apiSettings: {
+                action: 'search',
+                method: 'GET',
+                url: '/search/{query}',
+                onResponse: function (apiResponse) {
+                    //console.log(apiResponse);
+                    var response = {
+                        results: []
+                    };
+
+                    // translate API response to work with search
+                    $.each(apiResponse, function (index, item) {
+                        response.results.push({
+                            image: item.avatar,
+                            title: item.surname,
+                            description: '@' + item.username,
+                            url: item.username
+                        });
+                    });
+                    console.log(response)
+                    return response;
+                }
+            }
+        });
 
 });
 

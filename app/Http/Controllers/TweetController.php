@@ -74,7 +74,9 @@ class TweetController extends Controller
             //return response()->json(['error' => 'You don\'t have permission to delete this tweet']);
         }
 
-        Storage::delete($tweet->images->img_path);
+        if ($tweet->hasImage()) {
+            Storage::delete($tweet->images->img_path);
+        }
         $tweet->delete();
 
         return redirect()->back()
