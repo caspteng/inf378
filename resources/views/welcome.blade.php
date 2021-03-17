@@ -4,7 +4,7 @@
     <!-- Standard Meta -->
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
 
     <!-- Site Properties -->
     <title>{{ $page_title ?? config('app.name') }}</title>
@@ -12,13 +12,14 @@
     <!-- Styles -->
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/home.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/semantic/semantic.min.css') }}">
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
-    <script src="{{ asset('assets/semantic/semantic.min.js') }}"></script>
+    <script src="{{ mix('js/app.js') }}"></script>
 </head>
 
+@push('links')
+    <link rel="stylesheet" href="{{ asset('css/home.css') }}">
+@endpush
 
 <body>
 <div class="maincontainer">

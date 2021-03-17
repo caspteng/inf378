@@ -25,3 +25,8 @@
 #content {
     padding-top: 80px;
 }
+
+.ui.search > .results .result .image {
+    width: auto;
+    border-radius: 2em
+}

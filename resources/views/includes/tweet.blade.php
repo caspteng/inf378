@@ -24,8 +24,8 @@
                     {{ $tweet->is_retweet ? $tweet->retweet->user->surname : $tweet->user->surname}}</a>
                 {{ $tweet->is_retweet ? '@' . $tweet->retweet->user->username : '@' . $tweet->user->username}}
                 <div class="date">
-                    {{ $tweet->is_retweet ? $tweet->retweet->created_at->format('d/m/Y') :
-                       $tweet->created_at->format('d/m/Y') }}
+                    {{ $tweet->is_retweet ? $tweet->retweet->age :
+                       $tweet->age }}
                 </div>
             </div>
             <div class="extra text">

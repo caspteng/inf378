@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Tweet extends Model
 {
@@ -68,5 +68,14 @@ class Tweet extends Model
             ->where('retweet_id', $tweet_id)
             ->where('user_id', $user_id)
             ->first());
+    }
+
+    public function getAgeAttribute()
+    {
+        if ($this->created_at->diffInDays() < 7) {
+            return $this->created_at->locale('fr_FR')->diffForHumans(['options' => Carbon::ONE_DAY_WORDS]);
+        } else {
+            return $this->created_at->isoFormat('DD/MM/YY à HH:mm');
+        }
     }
 }
