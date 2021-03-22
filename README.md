@@ -5,12 +5,12 @@ Student project for [W@C by Epitech](https://www.webacademie.org/). Promo 2022 S
 
 Close this repos
 ```
-git clone https://github.com/EpitechIT2020/W-WEB-090-STG-1-1-academie-adrien.marion
+git clone https://github.com/adrimarn/tweetacademy.git
 ```
 
 Navigate in the folder
 ```
-cd W-WEB-090-STG-1-1-academie-adrien.marion
+cd tweetacademy
 ```
 
 Generate the .env
