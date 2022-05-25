@@ -50,7 +50,7 @@ class Tweet extends Model
     public function getImageAttribute()
     {
         if (isset($this->images->img_path)) {
-            return asset('/storage/' . $this->images->img_path);
+            return asset('https://inf378.s3.amazonaws.com/' . $this->images->img_path);
         }
         return null;
     }

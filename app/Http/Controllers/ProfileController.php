@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 
 class ProfileController extends Controller
@@ -32,8 +33,11 @@ class ProfileController extends Controller
             $is_owner = auth()->user()->id == $user->id;
         }
         $followings = $user->following()->latest()->paginate(50);
-        return view('profile.following', compact('followings',
-            'is_owner', 'user'))
+        return view('profile.following', compact(
+            'followings',
+            'is_owner',
+            'user'
+        ))
             ->with('page_title', 'Personnes suivies par ' . $user->surname);
     }
 
@@ -44,8 +48,11 @@ class ProfileController extends Controller
             $is_owner = auth()->user()->id == $user->id;
         }
         $followers = $user->follower()->latest()->paginate(50);
-        return view('profile.followers', compact('followers',
-            'is_owner', 'user'))
+        return view('profile.followers', compact(
+            'followers',
+            'is_owner',
+            'user'
+        ))
             ->with('page_title', 'Personnes qui suivent ' . $user->surname);
     }
 
@@ -57,12 +64,20 @@ class ProfileController extends Controller
             'avatar_picture' => 'max:2048|mimes:jpeg,png'
         ]);
 
+        $user->update($attribute);
+
         if (request()->hasFile('avatar_picture')) {
-            $attribute['avatar_picture'] = request('avatar_picture')->store('avatars');
-            Image::make('storage/' . $attribute['avatar_picture'])->fit(500)->encode('jpg', 100)->save();
+            // $attribute['avatar_picture'] = request('avatar_picture')->store('avatars');
+            // Image::make('storage/' . $attribute['avatar_picture'])->fit(500)->encode('jpg', 100)->save();
+
+            $file = request()->file('avatar_picture');
+            $extention = $file->getClientOriginalExtension();
+            $imageName = time() . "." . $extention;
+            Storage::disk('s3')->put('avatars/' . $imageName, file_get_contents($file));
+            $user->avatar_picture = 'avatars/' . $imageName;
+            $user->save();
         }
 
-        $user->update($attribute);
         return redirect($user->path())
             ->with('flash.message', 'Profil actualisé')
             ->with('flash.class', 'success');

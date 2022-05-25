@@ -39,12 +39,15 @@ class TweetController extends Controller
         ]);
 
         if (request()->hasFile('img_path')) {
-            $attribute['img_path'] = request('img_path')->store('images');
+            $file = $request->file('img_path');
+            $extention = $file->getClientOriginalExtension();
+            $imageName = time() . "." . $extention;
+            Storage::disk('s3')->put('images/' . $imageName, file_get_contents($file));
             // TODO: Adding custom encode for GIF
             // Image::make('storage/' . $attribute['img_path'])->encode('', 100)->save();
             TweetsImage::create([
                 'tweet_id' => $tweet->id,
-                'img_path' => $attribute['img_path']
+                'img_path' => 'images/' . $imageName
             ]);
         }
 
@@ -132,7 +135,6 @@ class TweetController extends Controller
         return redirect()->back()
             ->with('flash.message', 'Retweet supprimé')
             ->with('flash.class', 'success');
-
     }
 
     /**

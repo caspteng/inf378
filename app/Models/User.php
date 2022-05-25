@@ -57,7 +57,7 @@ class User extends Authenticatable
     public function getAvatarAttribute()
     {
         if (isset($this->avatar_picture)) {
-            return asset('/storage/' . $this->avatar_picture);
+            return asset('https://inf378.s3.amazonaws.com/' . $this->avatar_picture);
         } else {
             return '//eu.ui-avatars.com/api/?size=290&&color=ffffff&background=555b6e&name='
                 . $this->surname . '&format=svg';
@@ -81,7 +81,6 @@ class User extends Authenticatable
         <p><b>" . $this->count_following . "</b><span style='color: grey'> abonnements</span>
         <b>" . $this->count_follower . "</b><span style='color: grey'> abonnés</span></p>
         ";
-
     }
 
     public function tweet()
@@ -127,8 +126,12 @@ class User extends Authenticatable
      */
     public function following()
     {
-        return $this->belongsToMany(User::class, 'follows',
-            'user_as_follow', 'user_followed')
+        return $this->belongsToMany(
+            User::class,
+            'follows',
+            'user_as_follow',
+            'user_followed'
+        )
             ->withTimestamps();
     }
 
@@ -140,8 +143,12 @@ class User extends Authenticatable
      */
     public function follower()
     {
-        return $this->belongsToMany(User::class, 'follows',
-            'user_followed', 'user_as_follow');
+        return $this->belongsToMany(
+            User::class,
+            'follows',
+            'user_followed',
+            'user_as_follow'
+        );
     }
 
     /**
@@ -204,5 +211,4 @@ class User extends Authenticatable
             'receiver_id' => $receiver
         ]);
     }
-
 }
